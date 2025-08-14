@@ -111,7 +111,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |------+------+------+------+------+--------|Click  |  |CMD(F)|------+------+------+------+------+------|
      * |   CTRL |   Z  |   X  |   C  |   V  |   B  |-------|  |-------|   N  |   M  |   ,  |   .  |   /  |  -   |
      * `-----------------------------------------/        /    \      \`-----------------------------------------/'
-     *            |LAlt | CMD  |SWITCH| LOWER| / Space  /       \Enter \ |NUMPAD| RAISE| CMD | RAlt |
+     *            |LAlt | CMD  |SWITCH| LOWER| / Space  /       \Enter \ |Nump/Bsp| RAISE| CMD | RAlt |
      *            |     |      |      |      |/       /          \      \|      |      |      |      |
      *            `----------------------------------'             '------''---------------------------'
      */
@@ -125,7 +125,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //|------ +-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
         KC_LCTL,    KC_Z,    KC_X,   KC_C,    KC_V,    KC_B, MS_BTN1,   KC_CTRL_F, KC_N,   KC_M,  KC_COMM,  KC_DOT,  KC_SLSH, KC_MINS,
         //|------ +-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
-                      KC_LOPT, KC_LGUI, KC_SWITCH, KC_LOWER, KC_SPC,     KC_ENT, KC_NUMPAD, KC_RAISE, KC_RGUI, KC_ROPT
+                      KC_LOPT, KC_LGUI, KC_SWITCH, KC_LOWER, KC_SPC,     KC_ENT, LT(KC_NUMPAD, KC_BSPC), KC_RAISE, KC_RGUI, KC_ROPT
         //            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------/
         ),
 
