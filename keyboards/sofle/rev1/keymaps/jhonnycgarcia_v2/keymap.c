@@ -1,4 +1,4 @@
-/* Copyright 2021 Dane Evans
+/** Copyright 2021 Dane Evans
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,7 +34,6 @@
 enum sofle_layers {
     _DEFAULTS = 0,
     _QWERTY = 0,
-    _DVORAK,
     _LOWER,
     _RAISE,
     _ADJUST,
@@ -60,7 +59,6 @@ enum custom_keycodes {
 };
 
 #define KC_QWERTY PDF(_QWERTY)
-#define KC_DVORAK PDF(_DVORAK)
 
 // Definición de la macro para el Mod-Tap de Caps Lock
 // Funciona como Shift cuando se mantiene presionado
@@ -134,34 +132,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 
-    /*
-     * DVORAK
-     * ,-------------------------------------------.                     ,-----------------------------------------.
-     * |   ESC  |   1  |   2  |   3  |   4  |   5  |                     |   6  |   7  |   8  |   9  |   0  | Bspc |
-     * |--------+------+------+------+------+------|                     |------+------+------+------+------+------|
-     * |   TAB  |   /  |   ,  |   .  |   P  |   Y  |                     |   F  |   G  |   C  |   R  |   L  |  `   |
-     * |--------+------+------+------+------+------|                     |------+------+------+------+------+------|
-     * |Cps-lsft|   A  |   O  |   E  |   U  |   I  |---------.    ,------|   D  |   H  |   T  |   N  |   S  |  '   |
-     * |------+------+------+------+------+--------|  Click  |   |CMD(F)|------+------+------+------+------+------|
-     * | LCTR   |   ;  |   Q  |   J  |   K  |   X  |---------|   |-------|   B  |   M  |   W  |   V  |   Z  |  -   |
-     * `-------------------------------------------/       /     \       \-----------------------------------------'
-     *            | LAlt | CMD  | SWITCH|LOWER| / Space  /        \Enter \ |NUMPAD|RAISE | CMD  | RAlt |
-     *            |      |      |      |      |/       /           \      \|      |      |      |      |
-     *            `----------------------------------'              '------''---------------------------'
-     */
-    [_DVORAK] = LAYOUT(
-        //,------------------------------------------------.                    ,---------------------------------------------------.
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-        //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
-        KC_TRNS,  KC_SLSH, KC_COMM, KC_DOT,   KC_P,   KC_Y,                       KC_F,    KC_G,   KC_C,    KC_R,    KC_L,   KC_TRNS,
-        //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
-        KC_TRNS,   KC_A,    KC_O,     KC_E,   KC_U,   KC_I,                       KC_D,   KC_H,    KC_T,    KC_N,    KC_S,   KC_TRNS,
-        //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
-        KC_TRNS, KC_SCLN,   KC_Q,    KC_J,    KC_K,   KC_X, KC_TRNS,   KC_TRNS,    KC_B,   KC_M,   KC_W,   KC_V,    KC_Z,    KC_TRNS,
-        //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
-                        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
-        //            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------/
-        ),
+
 
     /* LOWER
      * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -225,7 +196,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
      * | Reset|      |      | bri v|      |      |                    |      |      |      |      |      |      |
      * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
-     * |UG_TOGG|hue^ |sat ^ | bri ^|      |      |-------.   ,--------|      |QWERTY|DVORAK|      |      |
+     * |UG_TOGG|hue^ |sat ^ | bri ^|      |      |-------.   ,--------|      |QWERTY|      |      |      |
      * |------+------+------+------+------+------|        |   |       |------+------+------+------+------+------|
      * |Nxt mod| hue v|sat v| bri v|      |      |--------|   |-------|      |      |      |      |      |      |
      * `-----------------------------------------/       /     \      \-----------------------------------------'
@@ -239,7 +210,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
         QK_BOOT,  KC_NO,   KC_NO,   KC_BRID, KC_NO,  KC_NO,                       KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
         //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
-        UG_TOGG, UG_HUEU, UG_SATU, UG_VALU,  KC_NO,  KC_NO,                      KC_NO, KC_QWERTY, KC_DVORAK, KC_NO, KC_NO, KC_NO,
+        UG_TOGG, UG_HUEU, UG_SATU, UG_VALU,  KC_NO,  KC_NO,                      KC_NO, KC_QWERTY, KC_NO, KC_NO, KC_NO, KC_NO,
         //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
         UG_NEXT, UG_HUED, UG_SATD, UG_VALD,  KC_NO,  KC_NO, KC_NO,       KC_NO,   KC_NO, KC_NO,   KC_NO,   KC_NO,    KC_NO, KC_NO,
         //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
@@ -278,7 +249,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ,-----------------------------------------.                    ,-----------------------------------------.
      * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
      * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
-     * |      |QWERTY|DVORAK|LOWER |RAISE |      |                    |      |      |Ctrl+↑|      |      |      |
+     * |      |QWERTY|      |LOWER |RAISE |      |                    |      |      |Ctrl+↑|      |      |      |
      * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
      * |      |ADJUST|NUMPAD|      |      |      |-------.     ,-------|      |Ctrl+←|Ctrl+↓|Ctrl+→|      |      |
      * |------+------+------+------+------+------|Ctrl+0 |    |  Mute |------+------+------+------+------+------|
@@ -293,7 +264,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //,------------------------------------------------.                    ,---------------------------------------------------.
         KC_NO,     KC_NO,   KC_NO,  KC_NO,   KC_NO,  KC_NO,                      KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
         //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
-        KC_NO,    TO(0),   TO(1),   TO(2),   TO(3),  KC_NO,                      KC_NO,  KC_NO, KC_LCTRL_UP ,   KC_NO,   KC_NO,   KC_NO,
+        KC_NO,    TO(0),   KC_NO,   TO(1),   TO(2),  KC_NO,                      KC_NO,  KC_NO, KC_LCTRL_UP ,   KC_NO,   KC_NO,   KC_NO,
         //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
         KC_NO,    TO(4),   TO(5),   KC_NO,   KC_NO,  KC_NO,                      KC_NO,  KC_LCTRL_LEFT,   KC_LCTRL_DOWN,   KC_LCTRL_RGHT,   KC_NO,   KC_NO,
         //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
@@ -312,7 +283,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *
  * Capas definidas:
  * - QWERTY: Capa base con distribución QWERTY (luz blanca)
- * - DVORAK: Distribución alternativa Dvorak (luz turquesa)
  * - LOWER: Capa de números y funciones (luz verde)
  * - RAISE: Capa de símbolos (luz azul)
  * - ADJUST: Capa de comandos y ajustes (luz rosa)
@@ -333,7 +303,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Light on inner column and underglow
 const rgblight_segment_t PROGMEM layer_qwerty_lights[]  = RGBLIGHT_LAYER_SEGMENTS(SET_LAYER_ID(HSV_WHITE));
 
-const rgblight_segment_t PROGMEM layer_dvorak_lights[]  = RGBLIGHT_LAYER_SEGMENTS(SET_LAYER_ID(HSV_TEAL));
+
 
 // _LOWER,
 // Light on outer column and underglow
@@ -359,8 +329,7 @@ const rgblight_segment_t *const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
     layer_symbol_lights,
     layer_command_lights,
     layer_numpad_lights,
-    layer_switcher_lights, // Overrides other layers
-    layer_dvorak_lights
+    layer_switcher_lights // Overrides other layers
 );
 
 layer_state_t layer_state_set_user(layer_state_t state) {
@@ -370,7 +339,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     rgblight_set_layer_state(3, layer_state_cmp(state, _ADJUST));
     rgblight_set_layer_state(4, layer_state_cmp(state, _NUMPAD));
     rgblight_set_layer_state(5, layer_state_cmp(state, _SWITCH));
-    rgblight_set_layer_state(7, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state, _DVORAK));
+
     return state;
 }
 void keyboard_post_init_user(void) {
@@ -392,7 +361,7 @@ void keyboard_post_init_user(void) {
  * - Renderizado del logo QMK en la pantalla secundaria
  * - Visualización del estado actual en la pantalla principal:
  *   - Modo actual (Game/Tech)
- *   - Distribución activa (QWERTY/Dvorak)
+ *   - Distribución activa (QWERTY)
  *   - Capa actual (Base/Raise/Lower/Adjust/Numpad/Switch)
  * - Rotación de la pantalla principal a 270°
  */
@@ -424,9 +393,7 @@ static void print_status_narrow(void) {
             oled_write_ln_P(PSTR("Qwrt"), false);
             break;
 
-        case _DVORAK:
-            oled_write_ln_P(PSTR("Dvrk"), false);
-            break;
+
 
         default:
             oled_write_ln_P(PSTR("Undef"), false);
@@ -436,7 +403,6 @@ static void print_status_narrow(void) {
     oled_write_ln_P(PSTR("LAYER"), false);
     switch (get_highest_layer(layer_state)) {
         case _QWERTY:
-        case _DVORAK:
             oled_write_P(PSTR("Base\n"), false);
             break;
         case _RAISE:
@@ -554,7 +520,6 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
         switch (get_highest_layer(layer_state)) {
             case _QWERTY:
-            case _DVORAK:
                 if (clockwise) {
                     tap_code(KC_WH_L); // Acción de rueda de mouse hacia la izquierda
                 } else {
@@ -614,7 +579,6 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     } else if (index == 1) {
         switch (get_highest_layer(layer_state)) {
             case _QWERTY:
-            case _DVORAK:
                 if (clockwise) {
                     tap_code(KC_WH_D); // Acción de rueda de mouse hacia abajo
                 } else {
