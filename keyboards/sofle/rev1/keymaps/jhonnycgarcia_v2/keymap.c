@@ -31,7 +31,16 @@
     {0, 1, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)}, \
     {36 + 0, 1, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)}
 
-enum sofle_layers { _DEFAULTS = 0, _QWERTY = 0, _COLEMAK, _DVORAK, _LOWER, _RAISE, _ADJUST, _NUMPAD, _SWITCH };
+enum sofle_layers {
+    _DEFAULTS = 0,
+    _QWERTY = 0,
+    _COLEMAK,
+    _DVORAK,
+    _LOWER,
+    _RAISE,
+    _ADJUST,
+    _NUMPAD,_SWITCH
+};
 
 /*
  * Define un tipo enumerado para identificar las diferentes capas del teclado.
