@@ -15,6 +15,9 @@
  */
  #pragma once
 
+ // Increase the maximum number of layers for dynamic keymaps
+ #define DYNAMIC_KEYMAP_LAYER_COUNT 8
+
  // #define USE_MATRIX_I2C
 
  /* Select hand configuration */
