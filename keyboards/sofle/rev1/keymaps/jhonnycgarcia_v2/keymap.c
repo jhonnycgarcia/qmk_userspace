@@ -99,6 +99,141 @@ enum custom_keycodes {
 #define KC_ADJUST MO(_ADJUST)
 #define KC_NUMPAD MO(_NUMPAD)
 
+/**
+ * \brief QWERTY layout base para Sofle (6 rows, 12 columns).
+ *
+ * Layout base sin mod-taps que contiene la distribución QWERTY estándar.
+ * Este layout se puede transformar usando macros para convertir la fila home
+ * en mod-taps GACS (Gui, Alt, Ctrl, Shift) sin modificar directamente
+ * cada tecla individual.
+ *
+ * Estructura del layout:
+ * ,-------------------------------------------.                  ,-----------------------------------------.
+ * |   ESC  |   1  |   2  |   3  |   4  |   5  |                  |   6  |   7  |   8  |   9  |   0  | Bspc |
+ * |--------+------+------+------+------+------|                  |------+------+------+------+------+------|
+ * |   TAB  |   Q  |   W  |   E  |   R  |   T  |                  |   Y  |   U  |   I  |   O  |   P  |  `   |
+ * |--------+------+------+------+------+------|                  |------+------+------+------+------+------|
+ * |Cps-lsft|   A  |   S  |   D  |   F  |   G  |-------.  ,-------|   H  |   J  |   K  |   L  |   ;  |  '   |
+ * |------+------+------+------+------+--------|Click  |  |CMD(F)|------+------+------+------+------+------|
+ * |   CTRL |   Z  |   X  |   C  |   V  |   B  |-------|  |-------|   N  |   M  |   ,  |   .  |   /  |  -   |
+ * `-----------------------------------------/        /    \      \`-----------------------------------------/'
+ *            |LAlt | CMD  |SWITCH| LOWER| / Space  /       \Enter \ |Nump/Bsp| RAISE| CMD | RAlt |
+ *            |     |      |      |      |/       /          \      \|      |      |      |      |
+ *            `----------------------------------'             '------''---------------------------'
+ *
+ * Uso: LAYOUT_QWERTY_BASE se puede pasar como parámetro a macros
+ * transformadoras como HOME_ROW_MOD_GACS().
+ */
+#define LAYOUT_QWERTY_BASE                                                                     \
+/*,------------------------------------------------.                    ,---------------------------------------------------.*/ \
+KC_ESC,     KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,   KC_8,    KC_9,    KC_0,   KC_BSPC, \
+/*|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|*/ \
+KC_TAB,     KC_Q,   KC_W,   KC_E,     KC_R,   KC_T,                       KC_Y,   KC_U,    KC_I,   KC_O,     KC_P,   KC_GRV, \
+/*|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|*/ \
+KC_CAPS_MT, KC_A,   KC_S,    KC_D,   KC_F,    KC_G,                      KC_H,    KC_J,    KC_K,    KC_L,  KC_SCLN, KC_QUOT, \
+/*|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|*/ \
+KC_LCTL,    KC_Z,    KC_X,   KC_C,    KC_V,    KC_B, MS_BTN1,   KC_CTRL_F, KC_N,   KC_M,  KC_COMM,  KC_DOT,  KC_SLSH, KC_MINS, \
+/*|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|*/ \
+               KC_LOPT, KC_LGUI, KC_SWITCH, KC_LOWER, KC_SPC,   KC_ENT, LT(KC_NUMPAD, KC_BSPC), KC_RAISE, KC_RGUI, KC_ROPT
+/*            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------*/
+
+/**
+ * \brief Macro transformadora para Home Row Mods GACS.
+ *
+ * Esta macro convierte automáticamente las teclas de la fila home en mod-taps
+ * siguiendo la distribución GACS (Gui, Option, Control, Shift) optimizada para macOS.
+ * Transforma el layout base sin modificar directamente cada tecla individual.
+ *
+ * DISTRIBUCIÓN GACS IMPLEMENTADA:
+ * ,-------------------------------------------.                  ,-----------------------------------------.
+ * |   ⛛  |   ⛛  |   ⛛  |   ⛛  |   ⛛  |   ⛛  |                  |   ⛛  |   ⛛  |   ⛛  |   ⛛  |   ⛛  | ⛛   |
+ * |--------+------+------+------+------+------|                  |------+------+------+------+------+------|
+ * |   ⛛  |   ⛛  |   ⛛  |   ⛛  |   ⛛  |   ⛛  |                  |   ⛛  |   ⛛  |   ⛛  |   ⛛  |   ⛛  |  ⛛   |
+ * |--------+------+------+------+------+------|                  |------+------+------+------+------+------|
+ * |  ⛛   |⛛+⌘   |⛛+⌥  |⛛+⌃  |⛛+⇧    |   ⛛   |-------.  ,-------|   ⛛   |⛛+⇧   |⛛+⌃   |⛛+⌥   |⛛+⌘   |  ⛛    |
+ * |------+------+------+------+------+--------|   ⛛   |  |   ⛛   |------+------+------+------+------+------|
+ * |   ⛛  |   ⛛  |   ⛛  |   ⛛  |   ⛛  |   ⛛  |-------|  |-------|   ⛛  |   ⛛  |   ⛛  |   ⛛  |   ⛛  |  ⛛   |
+ * `-----------------------------------------/        /    \      \`-----------------------------------------/'
+ *            |⛛   |  ⛛   |  ⛛   |  ⛛   | /   ⛛    /       \  ⛛   \ |  ⛛   |  ⛛   |  ⛛   |  ⛛   |
+ *            |     |      |      |      |/       /          \      \|      |      |      |      |
+ *            `----------------------------------'             '------''---------------------------'
+ *
+ * LEYENDA DE TRANSFORMACIONES:
+ * ┌─────────────────────────────────────────────────────────────────────────────┐
+ * │  ⛛: Símbolo que indica que la tecla se transformará en mod-tap GACS       │
+ * │  ⛛+⌘: Tecla que se convierte en Command (⌘) cuando se mantiene presionada │
+ * │  ⛛+⌥: Tecla que se convierte en Option (⌥) cuando se mantiene presionada  │
+ * │  ⛛+⌃: Tecla que se convierte en Control (⌃) cuando se mantiene presionada │
+ * │  ⛛+⇧: Tecla que se convierte en Shift (⇧) cuando se mantiene presionada   │
+ * └─────────────────────────────────────────────────────────────────────────────┘
+ *
+ * TRANSFORMACIÓN DE LA FILA HOME:
+ * ┌─────────────────────────────────────────────────────────────────────────────┐
+ * │  IZQUIERDA (Mano izquierda)        │        DERECHA (Mano derecha)        │
+ * ├─────────────────────────────────────────────────────────────────────────────┤
+ * │  ⛛ → LGUI_T(⛛)  │ Command (⌘) + Tecla original  │  ⛛ → RSFT_T(⛛)  │ Shift (⇧) + Tecla original     │
+ * │  ⛛ → LALT_T(⛛)  │ Option (⌥) + Tecla original   │  ⛛ → RCTL_T(⛛)  │ Control (⌃) + Tecla original   │
+ * │  ⛛ → LCTL_T(⛛)  │ Control (⌃) + Tecla original  │  ⛛ → RALT_T(⛛)  │ Option (⌥) + Tecla original    │
+ * │  ⛛ → LSFT_T(⛛)  │ Shift (⇧) + Tecla original    │  ⛛ → RGUI_T(⛛)  │ Command (⌘) + Tecla original   │
+ * └─────────────────────────────────────────────────────────────────────────────┘
+ *
+ * NOTA: Esta configuración está optimizada para macOS y utiliza los modificadores
+ * estándar del sistema: Command (⌘), Option (⌥), Control (⌃) y Shift (⇧).
+ *
+ * NOTA: ⛛ representa cualquier tecla de la fila home que se transformará.
+ * La macro detecta automáticamente qué teclas están en la posición home row
+ * y las convierte en mod-taps GACS correspondientes.
+ *
+ * FUNCIONAMIENTO:
+ * - TOCAR RÁPIDAMENTE: Activa la tecla normal de la fila home
+ * - MANTENER PRESIONADO: Activa el modificador correspondiente (Gui, Alt, Ctrl, Shift)
+ * - COMBINACIONES: Se pueden combinar con otras teclas para atajos
+ *
+ * EJEMPLOS DE USO:
+ * - Tecla 1 + C = Copiar (Gui + C)
+ * - Tecla 2 + Z = Deshacer (Alt + Z)
+ * - Tecla 3 + C = Seleccionar todo (Ctrl + C)
+ * - Tecla 4 + A = Seleccionar todo (Shift + A)
+ *
+ * IMPLEMENTACIÓN TÉCNICA:
+ * La macro recibe un layout base y transforma automáticamente:
+ * - Fila 1: Teclas normales (sin cambios)
+ * - Fila 2: Teclas normales (sin cambios)
+ * - Fila 3: Home row transformada en mod-taps GACS
+ * - Fila 4: Teclas normales (sin cambios)
+ * - Thumbs: Teclas normales (sin cambios)
+ *
+ * Uso: HOME_ROW_MOD_GACS(LAYOUT_BASE)
+ * Requisitos: El layout debe tener al menos 60 keycodes (4 filas: 12+12+12+14 teclas + 10 thumbs)
+ * Compatible con cualquier distribución de teclado que tenga una fila home
+ */
+#define _HOME_ROW_MOD_GACS(                                            \
+/*,------------------------------------------------.                    ,---------------------------------------------------.*/ \
+    L00,    L01,    L02,    L03,     L04,       L05,                        R06,    R07,     R08,   R09,     R10,      R11,        \
+/*|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|*/ \
+    L12,    L13,    L14,    L15,    L16,    L17,                         R18,    R19,    R20,    R21,    R22,    R23,        \
+/*|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|*/ \
+    L24,    L25,    L26,    L27,    L28,    L29,                         R30,      R31,      R32,     R33,    R34,    R35,        \
+/*|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|*/ \
+    L36,    L37,    L38,    L39,    L40,    L41,                         R42,      R43,    R44,    R45,      R46,      R47,   \
+/*|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|*/ \
+                                                                ...)                                                               \
+        /*            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------*/ \
+/*,------------------------------------------------.                    ,---------------------------------------------------.*/ \
+    L00,    L01,   L02,      L03,     L04,    L05,                        R06,    R07,     R08,     R09,    R10,       R11,  \
+/*|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|*/ \
+    L12,    L13,    L14,     L15,    L16,     L17,                        R18,    R19,    R20,     R21,      R22,       R23,  \
+/*|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|*/ \
+                            /* Home row mods GACS aplicados solo a las posiciones home */ \
+   L24, LGUI_T(L25), LALT_T(L26), LCTL_T(L27), LSFT_T(L28),  L29,          R30, RSFT_T(R31), RCTL_T(R32), LALT_T(R33), RGUI_T(R34), R35,  \
+/*|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|*/ \
+    L36,    L37,    L38,     L39,    L40,     L41,                         R42,    R43,    R44,     R45,     R46,      R47,  \
+/*|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|*/ \
+    __VA_ARGS__
+        /*            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------*/ \
+#define HOME_ROW_MOD_GACS(...) _HOME_ROW_MOD_GACS(__VA_ARGS__)
+#define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /*
      * QWERTY
@@ -115,23 +250,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *            |     |      |      |      |/       /          \      \|      |      |      |      |
      *            `----------------------------------'             '------''---------------------------'
      */
-    [_QWERTY] = LAYOUT(
-        //,------------------------------------------------.                    ,---------------------------------------------------.
-        KC_ESC,     KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,   KC_8,    KC_9,    KC_0,   KC_BSPC,
-        //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
-        KC_TAB,     KC_Q,   KC_W,   KC_E,     KC_R,   KC_T,                       KC_Y,   KC_U,    KC_I,   KC_O,     KC_P,   KC_GRV,
-        //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
-        KC_CAPS_MT, KC_A,   KC_S,    KC_D,   KC_F,    KC_G,                      KC_H,    KC_J,    KC_K,    KC_L,  KC_SCLN, KC_QUOT,
-        //|------ +-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
-        KC_LCTL,    KC_Z,    KC_X,   KC_C,    KC_V,    KC_B, MS_BTN1,   KC_CTRL_F, KC_N,   KC_M,  KC_COMM,  KC_DOT,  KC_SLSH, KC_MINS,
-        //|------ +-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
-                      KC_LOPT, KC_LGUI, KC_SWITCH, KC_LOWER, KC_SPC,     KC_ENT, LT(KC_NUMPAD, KC_BSPC), KC_RAISE, KC_RGUI, KC_ROPT
-        //            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------/
-        ),
-
-
-
-
+    [_QWERTY] = LAYOUT_wrapper(LAYOUT_QWERTY_BASE),
 
     /* LOWER
      * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -195,7 +314,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
      * | Reset|      |      | bri v|      |      |                    |      |      |      |      |      |      |
      * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
-     * |UG_TOGG|hue^ |sat ^ | bri ^|      |      |-------.   ,--------|      |QWERTY|      |      |      |
+     * |UG_TOGG|hue^ |sat ^ | bri ^|      |      |-------.   ,--------|      |      |      |      |      |      |
      * |------+------+------+------+------+------|        |   |       |------+------+------+------+------+------|
      * |Nxt mod| hue v|sat v| bri v|      |      |--------|   |-------|      |      |      |      |      |      |
      * `-----------------------------------------/       /     \      \-----------------------------------------'
@@ -511,6 +630,57 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return true;
 }
+
+// =============================================================================
+// CONFIGURACIÓN DE TAPPING TERMS - Tiempos de respuesta personalizados
+// =============================================================================
+//
+// Esta función configura tiempos de respuesta personalizados para cada modificador
+// del home row. Los tiempos se ajustan según la frecuencia de uso y la necesidad
+// de evitar activaciones accidentales.
+//
+// TAPPING TERMS EXPLICADOS:
+// ┌─────────────────────────────────────────────────────────────────────────────┐
+// │  MODIFICADOR  │  TECLAS  │  TIEMPO  │  JUSTIFICACIÓN                      │
+// ├─────────────────────────────────────────────────────────────────────────────┤
+// │     Gui       │   A, ;   │  250ms   │  Más lento para evitar activaciones │
+// │               │          │          │  accidentales del menú              │
+// ├─────────────────────────────────────────────────────────────────────────────┤
+// │    Shift      │   F, J   │  120ms   │  Más rápido para respuesta inmediata│
+// │               │          │          │  en selección de texto              │
+// ├─────────────────────────────────────────────────────────────────────────────┤
+// │     Alt       │   S, L   │  200ms   │  Tiempo medio para equilibrio      │
+// │               │          │          │  entre velocidad y precisión        │
+// ├─────────────────────────────────────────────────────────────────────────────┤
+// │     Ctrl      │   D, K   │  200ms   │  Tiempo medio para equilibrio      │
+// │               │          │          │  entre velocidad y precisión        │
+// └─────────────────────────────────────────────────────────────────────────────┘
+//
+// CÓMO FUNCIONA:
+// - TOCAR RÁPIDAMENTE (< tiempo): Activa la tecla normal
+// - MANTENER PRESIONADO (> tiempo): Activa el modificador
+// - El tiempo se mide desde que se presiona hasta que se suelta
+//
+// =============================================================================
+// uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+//     // Gui (A) - tiempo más largo para evitar activaciones accidentales
+//     if (keycode == LGUI_T(KC_A)) return 250;
+
+//     // Shift (F y J) - tiempo más corto para respuesta rápida
+//     if (keycode == LSFT_T(KC_F) || keycode == RSFT_T(KC_J)) return 120;
+
+//     // Alt (S y L) - tiempo medio
+//     if (keycode == LALT_T(KC_S) || keycode == RALT_T(KC_L)) return 200;
+
+//     // Ctrl (D y K) - tiempo medio
+//     if (keycode == LCTL_T(KC_D) || keycode == RCTL_T(KC_K)) return 200;
+
+//     // Gui (;) - tiempo más largo para evitar activaciones accidentales
+//     if (keycode == RGUI_T(KC_SCLN)) return 250;
+
+//     // Para todas las demás teclas, usar el tapping term por defecto
+//     return TAPPING_TERM;
+// }
 
 #ifdef ENCODER_ENABLE
 

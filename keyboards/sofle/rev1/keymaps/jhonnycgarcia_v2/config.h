@@ -29,11 +29,15 @@
 
  #define CUSTOM_LAYER_READ // if you remove this it causes issues - needs better guarding
 
+ /* Tapping configuration */
  #define QUICK_TAP_TERM 0
- #ifdef TAPPING_TERM
- #    undef TAPPING_TERM
- #    define TAPPING_TERM 200
- #endif
+//  #ifdef TAPPING_TERM
+//  #    undef TAPPING_TERM
+//  #    define TAPPING_TERM 200
+//  #endif
+#define TAPPING_TERM 200
+#define TAPPING_TERM_PER_KEY
+
  #define ENCODER_DIRECTION_FLIP
 
  #ifdef ENCODER_RESOLUTION
