@@ -15,5 +15,5 @@ Features:
 - Left encoder controls volume up/down/mute. Right encoder PGUP/PGDOWN.
 
 ## Scripts
-- compile: `qmk compile -kb sofle/rev1 -km jhonnycgarcia.`
+- compile: `qmk compile -kb sofle/rev1 -km jhonnycgarcia`
 - lint: `qmk lint -km jhonnycgarcia -kb sofle/rev1 --strict`
