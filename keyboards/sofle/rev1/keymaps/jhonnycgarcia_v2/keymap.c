@@ -58,7 +58,6 @@ enum custom_keycodes {
     KC_NTIL, // Definicion de tecla para la letra ñ
 };
 
-#define KC_QWERTY PDF(_QWERTY)
 
 // Definición de la macro para el Mod-Tap de Caps Lock
 // Funciona como Shift cuando se mantiene presionado
@@ -210,7 +209,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
         QK_BOOT,  KC_NO,   KC_NO,   KC_BRID, KC_NO,  KC_NO,                       KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
         //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
-        UG_TOGG, UG_HUEU, UG_SATU, UG_VALU,  KC_NO,  KC_NO,                      KC_NO, KC_QWERTY, KC_NO, KC_NO, KC_NO, KC_NO,
+        UG_TOGG, UG_HUEU, UG_SATU, UG_VALU,  KC_NO,  KC_NO,                      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
         UG_NEXT, UG_HUED, UG_SATD, UG_VALD,  KC_NO,  KC_NO, KC_NO,       KC_NO,   KC_NO, KC_NO,   KC_NO,   KC_NO,    KC_NO, KC_NO,
         //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
