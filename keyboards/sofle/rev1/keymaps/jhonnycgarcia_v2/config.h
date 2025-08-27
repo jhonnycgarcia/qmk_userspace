@@ -41,6 +41,7 @@
 #define TAPPING_TERM_PER_KEY
 
 /* Configuraciones para mejorar la responsividad de Layer Taps */
+#define FLOW_TAP_TERM 150
 #define PERMISSIVE_HOLD
 // #define IGNORE_MOD_TAP_INTERRUPT
 
