@@ -134,7 +134,7 @@ KC_CAPS_MT, KC_A,   KC_S,    KC_D,   KC_F,    KC_G,                      KC_H,  
 /*|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|*/ \
 KC_LCTL,    KC_Z,    KC_X,   KC_C,    KC_V,    KC_B, MS_BTN1,   KC_CTRL_F, KC_N,   KC_M,  KC_COMM,  KC_DOT,  KC_SLSH, KC_MINS, \
 /*|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|*/ \
-               KC_LOPT, KC_LGUI, KC_SWITCH, KC_LOWER, KC_SPC,   KC_ENT, KC_NUMPAD, KC_RAISE, KC_RGUI, KC_ROPT
+               KC_LOPT, KC_LGUI, KC_SWITCH, KC_LOWER, KC_SPC,   KC_ENT, LT(KC_NUMPAD, KC_BSPC), KC_RAISE, KC_RGUI, KC_ROPT
 /*            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------*/
 
 /**
@@ -662,25 +662,28 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 // - El tiempo se mide desde que se presiona hasta que se suelta
 //
 // =============================================================================
-// uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-//     // Gui (A) - tiempo más largo para evitar activaciones accidentales
-//     if (keycode == LGUI_T(KC_A)) return 250;
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    // Tecla de pulgar NUMPAD/BSPC - tiempo más rápido para mejor respuesta
+    if (keycode == LT(KC_NUMPAD, KC_BSPC)) return 150;
 
-//     // Shift (F y J) - tiempo más corto para respuesta rápida
-//     if (keycode == LSFT_T(KC_F) || keycode == RSFT_T(KC_J)) return 120;
+    // // Gui (A) - tiempo más largo para evitar activaciones accidentales
+    // if (keycode == LGUI_T(KC_A)) return 250;
 
-//     // Alt (S y L) - tiempo medio
-//     if (keycode == LALT_T(KC_S) || keycode == RALT_T(KC_L)) return 200;
+    // // Shift (F y J) - tiempo más corto para respuesta rápida
+    // if (keycode == LSFT_T(KC_F) || keycode == RSFT_T(KC_J)) return 120;
 
-//     // Ctrl (D y K) - tiempo medio
-//     if (keycode == LCTL_T(KC_D) || keycode == RCTL_T(KC_K)) return 200;
+    // // Alt (S y L) - tiempo medio
+    // if (keycode == LALT_T(KC_S) || keycode == RALT_T(KC_L)) return 200;
 
-//     // Gui (;) - tiempo más largo para evitar activaciones accidentales
-//     if (keycode == RGUI_T(KC_SCLN)) return 250;
+    // // Ctrl (D y K) - tiempo medio
+    // if (keycode == LCTL_T(KC_D) || keycode == RCTL_T(KC_K)) return 200;
 
-//     // Para todas las demás teclas, usar el tapping term por defecto
-//     return TAPPING_TERM;
-// }
+    // // Gui (;) - tiempo más largo para evitar activaciones accidentales
+    // if (keycode == RGUI_T(KC_SCLN)) return 250;
+
+    // Para todas las demás teclas, usar el tapping term por defecto
+    return TAPPING_TERM;
+}
 
 #ifdef ENCODER_ENABLE
 
