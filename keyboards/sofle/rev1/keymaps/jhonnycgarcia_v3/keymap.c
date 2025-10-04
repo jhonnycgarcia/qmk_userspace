@@ -32,12 +32,12 @@
     {36 + 0, 1, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)}
 
 enum sofle_layers {
-    _DEFAULTS = 0,
     _QWERTY = 0,
     _LOWER,
     _RAISE,
     _ADJUST,
-    _NUMPAD,_SWITCH
+    _NUMPAD,
+    _SWITCH
 };
 
 /*
@@ -451,7 +451,7 @@ const rgblight_segment_t *const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
 );
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    rgblight_set_layer_state(0, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state, _QWERTY));
+    rgblight_set_layer_state(0, layer_state_cmp(state, _QWERTY) && layer_state_cmp(default_layer_state, _QWERTY));
     rgblight_set_layer_state(1, layer_state_cmp(state, _LOWER));
     rgblight_set_layer_state(2, layer_state_cmp(state, _RAISE));
     rgblight_set_layer_state(3, layer_state_cmp(state, _ADJUST));

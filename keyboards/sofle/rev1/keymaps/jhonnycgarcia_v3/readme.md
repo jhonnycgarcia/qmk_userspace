@@ -1,7 +1,7 @@
 ![SofleKeyboard default keymap](https://i.imgur.com/MZxVvm9.png)
 ![SofleKeyboard adjust layer](https://i.imgur.com/f5sKy0I.png)
 
-# Keymap personalizado para Sofle Keyboard - JhonnyCGarcia v2
+# Keymap personalizado para Sofle Keyboard - JhonnyCGarcia v3
 
 Layout en [Keyboard Layout Editor](http://www.keyboard-layout-editor.com/#/gifs/76efb423a46cbbea75465cb468eef7ff) y [adjust layer](http://www.keyboard-layout-editor.com/#/gifs/4bcf66f922cfd54da20ba04905d56bd4)
 
@@ -14,7 +14,7 @@ Layout en [Keyboard Layout Editor](http://www.keyboard-layout-editor.com/#/gifs/
 - **Pantalla OLED** en la mitad maestra muestra modo seleccionado y estado de caps lock (rotada)
 - **Encoder izquierdo** controla volumen arriba/abajo/silenciar
 - **Encoder derecho** controla PGUP/PGDOWN
-- **9 capas personalizadas** con funcionalidades específicas por capa
+- **6 capas personalizadas** con funcionalidades específicas por capa
 
 ## Capas del Keymap
 
@@ -34,12 +34,12 @@ Layout en [Keyboard Layout Editor](http://www.keyboard-layout-editor.com/#/gifs/
 ### EEPROM y Capas Dinámicas
 - **EEPROM disponible**: 28,672 bytes
 - **Firmware máximo**: 28,672 bytes
-- **Capas dinámicas máximas**: 8 (con VIA habilitado)
+- **Capas dinámicas máximas**: 6 (con VIA habilitado)
 - **Capas estáticas máximas**: 9 (sin VIA)
 
 ### Configuración Actual
 - **VIA_ENABLE**: Deshabilitado temporalmente
-- **DYNAMIC_KEYMAP_LAYER_COUNT**: 8
+- **DYNAMIC_KEYMAP_LAYER_COUNT**: 6
 - **Tamaño del firmware**: ~26,236 bytes (91% del máximo)
 
 ## Comandos de Compilación y Verificación
@@ -118,7 +118,7 @@ jhonnycgarcia_v3/
 ## Notas Importantes
 
 - **VIA**: Deshabilitado para evitar conflictos de EEPROM
-- **Capas**: 9 capas definidas, pero limitadas por EEPROM
+- **Capas**: 6 capas definidas, optimizadas para EEPROM
 - **RGB**: Configurado con 72 LEDs (36 por lado)
 - **OLED**: Rotación de 270° en la pantalla principal
 - **Encoders**: Configuración personalizada por capa
