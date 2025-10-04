@@ -78,6 +78,12 @@ enum custom_keycodes {
  * - KC_LCTRL_S: Left Control + S
  * - KC_CTRL_0: Control + 0
  * - KC_EMOJ: Control + Command + Space
+ * - BSPC_NUM: fast Backspace / hold Numb Mod
+ * - KC_REDO(Redo): Control + Shift + Z
+ * - KC_UNDO(Undo): Control + Z
+ * - KC_PASTE(Paste): Control + V
+ * - KC_COPY(Copy): Control + C
+ * - KC_CUT(Cut): Control + X
  */
 #define KC_CTRL_F G(KC_F)
 #define KC_CTRL_T G(KC_T)
@@ -90,6 +96,12 @@ enum custom_keycodes {
 #define KC_CTRL_S G(KC_S)
 #define KC_CTRL_0 G(KC_0)
 #define KC_EMOJ LCTL(LGUI(KC_SPC))
+#define BSPC_NUM LT(KC_NUMPAD, KC_BSPC)
+#define KC_REDO LGUI(S(KC_Z))
+#define KC_UNDO LGUI(KC_Z)
+#define KC_PASTE LGUI(KC_V)
+#define KC_COPY LGUI(KC_C)
+#define KC_CUT LGUI(KC_X)
 
 
 /**
@@ -137,7 +149,7 @@ KC_CAPS_MT, KC_A,   KC_S,    KC_D,   KC_F,    KC_G,                      KC_H,  
 /*|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|*/ \
 KC_LCTL,    KC_Z,    KC_X,   KC_C,    KC_V,    KC_B, MS_BTN1,   KC_CTRL_F, KC_N,   KC_M,  KC_COMM,  KC_DOT,  KC_SLSH, KC_MINS, \
 /*|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|*/ \
-               KC_LOPT, KC_LGUI, KC_SWITCH, KC_LOWER, KC_SPC,   KC_ENT, LT(KC_NUMPAD, KC_BSPC), KC_RAISE, KC_RGUI, KC_ROPT
+               KC_LOPT, KC_LGUI, KC_SWITCH, KC_LOWER, KC_SPC,   KC_ENT, BSPC_NUM, KC_RAISE, KC_RGUI, KC_ROPT
 /*            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------*/
 
 /**
@@ -171,14 +183,14 @@ KC_LCTL,    KC_Z,    KC_X,   KC_C,    KC_V,    KC_B, MS_BTN1,   KC_CTRL_F, KC_N,
  * └─────────────────────────────────────────────────────────────────────────────┘
  *
  * TRANSFORMACIÓN DE LA FILA HOME:
- * ┌─────────────────────────────────────────────────────────────────────────────┐
- * │  IZQUIERDA (Mano izquierda)        │        DERECHA (Mano derecha)        │
- * ├─────────────────────────────────────────────────────────────────────────────┤
+ * ┌─────────────────────────────────────────────────────────────────────────────────────────────────────┐
+ * │  IZQUIERDA (Mano izquierda)                      │                    DERECHA (Mano derecha)        │
+ * ├─────────────────────────────────────────────────────────────────────────────────────────────────────┤
  * │  ⛛ → LGUI_T(⛛)  │ Command (⌘) + Tecla original  │  ⛛ → RSFT_T(⛛)  │ Shift (⇧) + Tecla original     │
  * │  ⛛ → LALT_T(⛛)  │ Option (⌥) + Tecla original   │  ⛛ → RCTL_T(⛛)  │ Control (⌃) + Tecla original   │
  * │  ⛛ → LCTL_T(⛛)  │ Control (⌃) + Tecla original  │  ⛛ → RALT_T(⛛)  │ Option (⌥) + Tecla original    │
  * │  ⛛ → LSFT_T(⛛)  │ Shift (⇧) + Tecla original    │  ⛛ → RGUI_T(⛛)  │ Command (⌘) + Tecla original   │
- * └─────────────────────────────────────────────────────────────────────────────┘
+ * └─────────────────────────────────────────────────────────────────────────────────────────────────────┘
  *
  * NOTA: Esta configuración está optimizada para macOS y utiliza los modificadores
  * estándar del sistema: Command (⌘), Option (⌥), Control (⌃) y Shift (⇧).
@@ -263,7 +275,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
      * | trans|      |      |      |      |      |-------.    ,-------| Left | Down |  Up  | Right| Bspc |Insert|
      * |------+------+------+------+------+------|CMD(T)|    |CMD(N)  |------+------+------+------+------+------|
-     * | trans|      |      |      |      |      |-------|    |-------| Home |PageD |PageU | End  |      |      |
+     * | trans| Undo | Cut  | Copy |Paste | Redo |-------|    |-------| Home |PageD |PageU | End  |      |      |
      * `-----------------------------------------/       /     \      \-----------------------------------------'
      *            | LAlt | CMD  | SWITCH|LOWER| / Space /       \Enter \ |NUMPAD|RAISE | CMD  | RAlt |
      *            |      |      |      |      |/       /         \      \|      |      |      |      |
@@ -277,7 +289,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
         KC_TRNS,   KC_NO,   KC_NO,   KC_NO,  KC_NO,  KC_NO,                      KC_LEFT, KC_DOWN , KC_UP, KC_RGHT, KC_BSPC,   KC_INS,
         //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
-        KC_TRNS,   KC_NO,  KC_NO,  KC_NO,    KC_NO,   KC_NO, KC_CTRL_T, KC_CTRL_N,KC_HOME,KC_PGDN,  KC_PGUP,  KC_END,   KC_NO,   KC_NO,
+        KC_TRNS,  KC_UNDO,KC_CUT, KC_COPY, KC_PASTE,KC_REDO, KC_CTRL_T, KC_CTRL_N,KC_HOME,KC_PGDN,  KC_PGUP,  KC_END,   KC_NO,   KC_NO,
         //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
                         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
         //            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------/
