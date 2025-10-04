@@ -40,7 +40,7 @@ enum sofle_layers {
     _SWITCH
 };
 
-/*
+/**
  * Define un tipo enumerado para identificar las diferentes capas del teclado.
  * El uso de un enum permite:
  * - Asignar nombres significativos a cada capa en lugar de usar números mágicos
@@ -77,6 +77,7 @@ enum custom_keycodes {
  * - KC_LCTRL_G: Left Control + G
  * - KC_LCTRL_S: Left Control + S
  * - KC_CTRL_0: Control + 0
+ * - KC_EMOJ: Control + Command + Space
  */
 #define KC_CTRL_F G(KC_F)
 #define KC_CTRL_T G(KC_T)
@@ -88,6 +89,8 @@ enum custom_keycodes {
 #define KC_CTRL_G G(KC_G)
 #define KC_CTRL_S G(KC_S)
 #define KC_CTRL_0 G(KC_0)
+#define KC_EMOJ LCTL(LGUI(KC_SPC))
+
 
 /**
  * Definiciones para las capas
@@ -256,11 +259,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ,-----------------------------------------.                    ,-----------------------------------------.
      * | trans|      |      |      |      |      |                    |      |      |      |      |      |Delete|
      * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
-     * | trans|      |      |      |      |NUMPAD|                    |⌥ + ← | End  | Home | ⌥ + →|Delete| Ps Cr|
+     * | trans|      |      |      |      |      |                    |⌥ + ← |      |      | ⌥ + →|Delete| Ps Cr|
      * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
      * | trans|      |      |      |      |      |-------.    ,-------| Left | Down |  Up  | Right| Bspc |Insert|
-     * |------+------+------+------+------+------|CMD(T)|    |CMD(N)|------+------+------+------+------+------|
-     * | trans|      |      |      |      |      |-------|    |-------|      |      |      |      |      |      |
+     * |------+------+------+------+------+------|CMD(T)|    |CMD(N)  |------+------+------+------+------+------|
+     * | trans|      |      |      |      |      |-------|    |-------| Home |PageD |PageU | End  |      |      |
      * `-----------------------------------------/       /     \      \-----------------------------------------'
      *            | LAlt | CMD  | SWITCH|LOWER| / Space /       \Enter \ |NUMPAD|RAISE | CMD  | RAlt |
      *            |      |      |      |      |/       /         \      \|      |      |      |      |
@@ -270,11 +273,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //,------------------------------------------------.                    ,---------------------------------------------------.
         KC_TRNS,   KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,                      KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_NO,   KC_DEL,
         //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
-        KC_TRNS,   KC_NO,   KC_NO,  KC_NO, KC_NUMPAD, KC_NO,               LOPT(KC_LEFT),KC_END,KC_HOME,LOPT(KC_RGHT),KC_DEL,  KC_PSCR,
+        KC_TRNS,   KC_NO,   KC_NO,  KC_NO,    KC_NO, KC_NO,               LOPT(KC_LEFT),KC_NO,KC_NO,LOPT(KC_RGHT),KC_DEL,  KC_PSCR,
         //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
         KC_TRNS,   KC_NO,   KC_NO,   KC_NO,  KC_NO,  KC_NO,                      KC_LEFT, KC_DOWN , KC_UP, KC_RGHT, KC_BSPC,   KC_INS,
         //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
-        KC_TRNS,   KC_NO,  KC_NO,  KC_NO,    KC_NO,   KC_NO, KC_CTRL_T, KC_CTRL_N,KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+        KC_TRNS,   KC_NO,  KC_NO,  KC_NO,    KC_NO,   KC_NO, KC_CTRL_T, KC_CTRL_N,KC_HOME,KC_PGDN,  KC_PGUP,  KC_END,   KC_NO,   KC_NO,
         //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
                         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
         //            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------/
