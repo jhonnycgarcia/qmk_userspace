@@ -59,26 +59,20 @@
  /* Configuración para LEDs WS2812 RGB */
  #define WS2812_DI_PIN D3  // Pin de datos para LEDs WS2812
 
- #ifdef RGB_MATRIX_ENABLE  // Si se habilita RGB matrix (per-key)
- #    define RGBLIGHT_LED_COUNT 35 // Número de LEDs (duplicado, error?)
- #    define RGBLIGHT_LED_COUNT 35 // Número de LEDs
- #    define RGB_MATRIX_LED_COUNT RGBLIGHT_LED_COUNT  // LEDs para matrix
- #endif
-
  #ifdef RGBLIGHT_ENABLE  // Configuración para RGBLIGHT (underglow)
  #    undef RGBLIGHT_LED_COUNT  // Undefine para redefinir
 
  // Efectos RGB habilitados (comentados = deshabilitados para ahorrar espacio)
- // #define RGBLIGHT_EFFECT_BREATHING  // Efecto respiración
- #    define RGBLIGHT_EFFECT_RAINBOW_MOOD  // Arcoíris lento
- // #define RGBLIGHT_EFFECT_RAINBOW_SWIRL  // Arcoíris giratorio
- // #define RGBLIGHT_EFFECT_SNAKE  // Efecto serpiente
- // #define RGBLIGHT_EFFECT_KNIGHT  // Efecto caballero
- // #define RGBLIGHT_EFFECT_CHRISTMAS  // Efecto navideño
- // #define RGBLIGHT_EFFECT_STATIC_GRADIENT  // Gradiente estático
- // #define RGBLIGHT_EFFECT_RGB_TEST  // Test de colores
- // #define RGBLIGHT_EFFECT_ALTERNATING  // Alternancia
- // #define RGBLIGHT_EFFECT_TWINKLE  // Brillo intermitente
+ #undef RGBLIGHT_EFFECT_BREATHING  // Efecto respiración
+ #undef RGBLIGHT_EFFECT_RAINBOW_MOOD  // Arcoíris lento
+ #undef RGBLIGHT_EFFECT_RAINBOW_SWIRL  // Arcoíris giratorio
+ #undef RGBLIGHT_EFFECT_SNAKE  // Efecto serpiente
+ #undef RGBLIGHT_EFFECT_KNIGHT  // Efecto caballero
+ #undef RGBLIGHT_EFFECT_CHRISTMAS  // Efecto navideño
+ #undef RGBLIGHT_EFFECT_STATIC_GRADIENT  // Gradiente estático
+ #undef RGBLIGHT_EFFECT_RGB_TEST  // Test de colores
+ #undef RGBLIGHT_EFFECT_ALTERNATING  // Alternancia
+ #undef RGBLIGHT_EFFECT_TWINKLE  // Brillo intermitente
 
  #    define RGBLIGHT_LED_COUNT 72  // Total de LEDs RGB (36 por lado)
  #    undef RGBLED_SPLIT  // Undefine para redefinir
@@ -92,7 +86,8 @@
  #    define RGBLIGHT_VAL_STEP 17  // Paso de valor (brillo)
  #endif
 
- #ifdef RGB_MATRIX_ENABLE  // Configuración para RGB matrix (per-key lighting)
+ #ifdef RGB_MATRIX_ENABLE  // Si se habilita RGB matrix (per-key)
+
  #    define RGB_MATRIX_KEYPRESSES // Reacciona a pulsaciones de teclas
  // #   define RGB_MATRIX_KEYRELEASES // Reacciona a liberaciones (en lugar de pulsaciones)
  #    define RGB_MATRIX_SLEEP // Apaga efectos cuando suspendido
@@ -101,7 +96,7 @@
  // #   define RGB_MATRIX_LED_FLUSH_LIMIT 16 // Limita frecuencia de actualización a 60fps (mejora responsividad)
  #    define RGB_MATRIX_MAXIMUM_BRIGHTNESS 150 // Límite de brillo máximo: 150/255 (más alto puede crashear)
 
- #    define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_GRADIENT_LEFT_RIGHT  // Modo por defecto: gradiente izquierda-derecha
+ #    define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_SOLID_COLOR  // Modo por defecto: color sólido
 
  #    define RGB_MATRIX_HUE_STEP 8  // Paso de tono (0-255)
  #    define RGB_MATRIX_SAT_STEP 8  // Paso de saturación
@@ -113,7 +108,8 @@
  // #   undef ENABLE_RGB_MATRIX_GRADIENT_UP_DOWN  // Gradiente arriba-abajo
  // #   undef ENABLE_RGB_MATRIX_BREATHING  // Respiración
  // #   undef ENABLE_RGB_MATRIX_CYCLE_ALL  // Ciclo todos
- // #   undef ENABLE_RGB_MATRIX_CYCLE_LEFT_RIGHT  // Ciclo izq-der
+//  #   undef ENABLE_RGB_MATRIX_CYCLE_LEFT_RIGHT  // Ciclo izq-der
+#undef ENABLE_RGB_MATRIX_CYCLE_LEFT_RIGHT
  // #   undef ENABLE_RGB_MATRIX_CYCLE_UP_DOWN  // Ciclo arriba-abajo
  // #   undef ENABLE_RGB_MATRIX_CYCLE_OUT_IN  // Ciclo fuera-dentro
  // #   undef ENABLE_RGB_MATRIX_CYCLE_OUT_IN_DUAL  // Ciclo dual fuera-dentro

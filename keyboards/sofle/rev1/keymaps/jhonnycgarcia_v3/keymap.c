@@ -249,6 +249,11 @@ KC_LCTL,    KC_Z,    KC_X,   KC_C,    KC_V,    KC_B, MS_BTN1,   KC_CTRL_F, KC_N,
 #define HOME_ROW_MOD_GACS(...) _HOME_ROW_MOD_GACS(__VA_ARGS__)
 #define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)
 
+const uint16_t PROGMEM switchmod_combo[] = {KC_LGUI, KC_RGUI, COMBO_END};
+combo_t key_combos[] = {
+    COMBO(switchmod_combo, MO(_SWITCH)),
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /*
      * QWERTY
@@ -329,9 +334,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
      * | Reset|      |      | bri v|      |      |                    |      |      |      |      |      |      |
      * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
-     * |UG_TOGG|hue^ |sat ^ | bri ^|      |      |-------.   ,--------|      |      |      |      |      |      |
+     * |UG_TOGG|hue^ |sat ^ | bri ^| vel+ |      |-------.   ,--------|      |      |      |      |      |      |
      * |------+------+------+------+------+------|        |   |       |------+------+------+------+------+------|
-     * |Nxt mod| hue v|sat v| bri v|      |      |--------|   |-------|      |      |      |      |      |      |
+     * |Nxt mod| hue v|sat v| bri v| vel- |      |--------|   |-------|      |      |      |      |      |      |
      * `-----------------------------------------/       /     \      \-----------------------------------------'
      *            | LAlt | CMD  |SWITCH| LOWER| / Space /       \Enter \ |NUMPAD|RAISE | CMD  | RAlt |
      *            |      |      |      |      |/       /         \      \|      |      |      |      |
@@ -343,9 +348,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
         QK_BOOT,  KC_NO,   KC_NO,   KC_BRID, KC_NO,  KC_NO,                       KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
         //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
-        UG_TOGG, UG_HUEU, UG_SATU, UG_VALU,  KC_NO,  KC_NO,                      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+        UG_TOGG, UG_HUEU, UG_SATU, UG_VALU,  UG_SPDU,  KC_NO,                      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
-        UG_NEXT, UG_HUED, UG_SATD, UG_VALD,  KC_NO,  KC_NO, KC_NO,       KC_NO,   KC_NO, KC_NO,   KC_NO,   KC_NO,    KC_NO, KC_NO,
+        UG_NEXT, UG_HUED, UG_SATD, UG_VALD,  UG_SPDD,  KC_NO, KC_NO,       KC_NO,   KC_NO, KC_NO,   KC_NO,   KC_NO,    KC_NO, KC_NO,
         //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
                         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
         //            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------/

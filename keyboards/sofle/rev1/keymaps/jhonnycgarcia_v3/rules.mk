@@ -9,6 +9,7 @@ CONSOLE_ENABLE = no    # Deshabilita consola de depuración (ahorra espacio)
 
 # Enable RGB LIGHT
 RGBLIGHT_ENABLE = yes  # Habilita iluminación RGB (underglow/per-key)
+# RGB_MATRIX_ENABLE = yes  # Deshabilita RGB matrix (per-key) para ahorrar espacio
 
 ENCODER_ENABLE = yes   # Habilita soporte para encoders (perillas rotativas)
 
@@ -19,3 +20,5 @@ OLED_ENABLE = yes      # Habilita pantalla OLED para mostrar info (capa, modo)
 # DYNAMIC_TAPPING_TERM_ENABLE = yes  # Permite ajustar tapping term dinámicamente (comentado para ahorrar espacio)
 
 # VIA_ENABLE = yes      # Habilita VIA configurator (comentado para ahorrar espacio)
+
+COMBO_ENABLE = yes # Habiliar combos para crear combinaciones personalizadas
