@@ -165,7 +165,7 @@ KC_LCTL,    KC_Z,    KC_X,   KC_C,    KC_V,    KC_B, MS_BTN1,   KC_CTRL_F, KC_N,
  * |--------+------+------+------+------+------|                  |------+------+------+------+------+------|
  * |   ⛛  |   ⛛  |   ⛛  |   ⛛  |   ⛛  |   ⛛  |                  |   ⛛  |   ⛛  |   ⛛  |   ⛛  |   ⛛  |  ⛛   |
  * |--------+------+------+------+------+------|                  |------+------+------+------+------+------|
- * |  ⛛   |⛛+⌘   |⛛+⌥  |⛛+⌃  |⛛+⇧    |   ⛛   |-------.  ,-------|   ⛛   |⛛+⇧   |⛛+⌃   |⛛+⌥   |⛛+⌘   |  ⛛    |
+ * |  ⛛   |⛛+⌘   | ⛛+⌃  | ⛛+⌥  | ⛛+⇧  |   ⛛   |-------.  ,-------|   ⛛   |⛛+⇧ |⛛+⌥   |  ⛛+⌃ | ⛛+⌘  |⛛+⌃  |  ⛛    |
  * |------+------+------+------+------+--------|   ⛛   |  |   ⛛   |------+------+------+------+------+------|
  * |   ⛛  |   ⛛  |   ⛛  |   ⛛  |   ⛛  |   ⛛  |-------|  |-------|   ⛛  |   ⛛  |   ⛛  |   ⛛  |   ⛛  |  ⛛   |
  * `-----------------------------------------/        /    \      \`-----------------------------------------/'
@@ -194,6 +194,7 @@ KC_LCTL,    KC_Z,    KC_X,   KC_C,    KC_V,    KC_B, MS_BTN1,   KC_CTRL_F, KC_N,
  *
  * NOTA: Esta configuración está optimizada para macOS y utiliza los modificadores
  * estándar del sistema: Command (⌘), Option (⌥), Control (⌃) y Shift (⇧).
+* https://precondition.github.io/home-row-mods
  *
  * NOTA: ⛛ representa cualquier tecla de la fila home que se transformará.
  * La macro detecta automáticamente qué teclas están en la posición home row
@@ -270,7 +271,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *            |     |      |      |      |/       /          \      \|      |      |      |      |
      *            `----------------------------------'             '------''---------------------------'
      */
-    [_QWERTY] = LAYOUT_wrapper(LAYOUT_QWERTY_BASE),
+    [_QWERTY] = LAYOUT_wrapper(HOME_ROW_MOD_GACS(LAYOUT_QWERTY_BASE)),
 
     /* LOWER
      * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -685,6 +686,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     // Tecla de pulgar NUMPAD/BSPC - tiempo más rápido para mejor respuesta
     if (keycode == BSPC_NUM) return 150;
+
+    if (keycode == LGUI_T(KC_A)) return 180;
+    if (keycode == LSFT_T(KC_F)) return 120;
+    if (keycode == LALT_T(KC_S) || keycode == LCTL_T(KC_D)) return 200;
 
     // // Gui (A) - tiempo más largo para evitar activaciones accidentales
     // if (keycode == LGUI_T(KC_A)) return 250;
