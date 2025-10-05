@@ -135,3 +135,5 @@ jhonnycgarcia_v3/
 - [Documentación QMK](https://docs.qmk.fm/)
 - [Sofle Keyboard](https://github.com/josefadamcik/SofleKeyboard)
 - [QMK Configurator](https://config.qmk.fm/)
+- [Miryoku](https://github.com/manna-harbour/miryoku)
+- [Home Row Mods](https://precondition.github.io/home-row-mods)
