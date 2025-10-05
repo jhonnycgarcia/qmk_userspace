@@ -279,7 +279,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
      * | trans|      |      |      |      |      |                    |⌥ + ← |      |      | ⌥ + →|Delete| Ps Cr|
      * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
-     * | trans|      |      |      |      |S-lock|-------.    ,-------| Left | Down |  Up  | Right| Bspc |Insert|
+     * | trans|      |      |Mouse1|Mouse2|S-lock|-------.    ,-------| Left | Down |  Up  | Right| Bspc |Insert|
      * |------+------+------+------+------+------|CMD(T)|    |CMD(N)  |------+------+------+------+------+------|
      * | trans| Undo | Cut  | Copy |Paste | Redo |-------|    |-------| Home |PageD |PageU | End  |      |      |
      * `-----------------------------------------/       /     \      \-----------------------------------------'
@@ -293,7 +293,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
         KC_TRNS,   KC_NO,   KC_NO,  KC_NO,    KC_NO, KC_NO,               LOPT(KC_LEFT),KC_NO,KC_NO,LOPT(KC_RGHT),KC_DEL,  KC_PSCR,
         //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
-        KC_TRNS,   KC_NO,   KC_NO,   KC_NO,  KC_NO, KC_LSCR,                      KC_LEFT, KC_DOWN , KC_UP, KC_RGHT, KC_BSPC,   KC_INS,
+        KC_TRNS,   KC_NO,   KC_NO, MS_BTN1, MS_BTN2, KC_LSCR,                      KC_LEFT, KC_DOWN , KC_UP, KC_RGHT, KC_BSPC,   KC_INS,
         //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
         KC_TRNS,  KC_UNDO,KC_CUT, KC_COPY, KC_PASTE,KC_REDO, KC_CTRL_T, KC_CTRL_N,KC_HOME,KC_PGDN,  KC_PGUP,  KC_END,   KC_NO,   KC_NO,
         //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
