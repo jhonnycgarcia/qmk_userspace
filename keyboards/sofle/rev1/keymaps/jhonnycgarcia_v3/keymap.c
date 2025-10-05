@@ -679,7 +679,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 // =============================================================================
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     // Tecla de pulgar NUMPAD/BSPC - tiempo más rápido para mejor respuesta
-    if (keycode == LT(KC_NUMPAD, KC_BSPC)) return 150;
+    if (keycode == BSPC_NUM) return 150;
 
     // // Gui (A) - tiempo más largo para evitar activaciones accidentales
     // if (keycode == LGUI_T(KC_A)) return 250;
@@ -700,49 +700,49 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     return TAPPING_TERM;
 }
 
-uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        default:
-            return QUICK_TAP_TERM;
-    }
-}
+// uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
+//     switch (keycode) {
+//         default:
+//             return QUICK_TAP_TERM;
+//     }
+// }
 
-bool is_flow_tap_key(uint16_t keycode) {
-    if ((get_mods() & (MOD_MASK_CG | MOD_BIT_LALT)) != 0) {
-        return false; // Disable Flow Tap on hotkeys.
-    }
+// bool is_flow_tap_key(uint16_t keycode) {
+//     if ((get_mods() & (MOD_MASK_CG | MOD_BIT_LALT)) != 0) {
+//         return false; // Disable Flow Tap on hotkeys.
+//     }
 
-    // Verificar si es nuestra tecla personalizada LT(KC_NUMPAD, KC_BSPC)
-    if (keycode == LT(KC_NUMPAD, KC_BSPC)) {
-        return true;
-    }
+//     // Verificar si es nuestra tecla personalizada LT(KC_NUMPAD, KC_BSPC)
+//     if (keycode == LT(KC_NUMPAD, KC_BSPC)) {
+//         return true;
+//     }
 
-    switch (keycode) {
-        case KC_SPC:
-        case KC_A ... KC_Z:
-        case KC_DOT:
-        case KC_COMM:
-        case KC_SCLN:
-        case KC_SLSH:
-        case KC_BSPC:  // Agregar KC_BSPC para que funcione con Flow Tap
-            return true;
-    }
-    return false;
-}
+//     switch (keycode) {
+//         case KC_SPC:
+//         case KC_A ... KC_Z:
+//         case KC_DOT:
+//         case KC_COMM:
+//         case KC_SCLN:
+//         case KC_SLSH:
+//         case KC_BSPC:  // Agregar KC_BSPC para que funcione con Flow Tap
+//             return true;
+//     }
+//     return false;
+// }
 
-uint16_t get_flow_tap_term(uint16_t keycode, keyrecord_t* record,
-    uint16_t prev_keycode) {
-    // Para nuestra tecla personalizada, usar un Flow Tap Term más agresivo
-    if (keycode == LT(KC_NUMPAD, KC_BSPC)) {
-        return 100; // Más rápido para Flow Tap en esta tecla específica
-    }
+// uint16_t get_flow_tap_term(uint16_t keycode, keyrecord_t* record,
+//     uint16_t prev_keycode) {
+//     // Para nuestra tecla personalizada, usar un Flow Tap Term más agresivo
+//     if (keycode == LT(KC_NUMPAD, KC_BSPC)) {
+//         return 100; // Más rápido para Flow Tap en esta tecla específica
+//     }
 
-    // Para otras teclas, usar la lógica estándar
-    if (is_flow_tap_key(keycode) && is_flow_tap_key(prev_keycode)) {
-        return FLOW_TAP_TERM;
-    }
-    return 0;
-}
+//     // Para otras teclas, usar la lógica estándar
+//     if (is_flow_tap_key(keycode) && is_flow_tap_key(prev_keycode)) {
+//         return FLOW_TAP_TERM;
+//     }
+//     return 0;
+// }
 
 #ifdef ENCODER_ENABLE
 

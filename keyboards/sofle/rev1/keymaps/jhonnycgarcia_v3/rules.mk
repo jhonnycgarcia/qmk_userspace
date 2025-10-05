@@ -1,14 +1,21 @@
 # Bootloader selection
-BOOTLOADER = caterina
-MOUSEKEY_ENABLE = yes
-EXTRAKEY_ENABLE = yes
-CONSOLE_ENABLE = no
+BOOTLOADER = caterina  # Bootloader para ATmega32U4 (Pro Micro), permite flashear via USB
+
+MOUSEKEY_ENABLE = yes  # Habilita emulación de mouse (movimiento, clics, scroll)
+
+EXTRAKEY_ENABLE = yes  # Habilita teclas extra (multimedia, navegación, sistema)
+
+CONSOLE_ENABLE = no    # Deshabilita consola de depuración (ahorra espacio)
 
 # Enable RGB LIGHT
-RGBLIGHT_ENABLE = yes
+RGBLIGHT_ENABLE = yes  # Habilita iluminación RGB (underglow/per-key)
 
-ENCODER_ENABLE = yes
-LTO_ENABLE = yes
-OLED_ENABLE = yes
-DYNAMIC_TAPPING_TERM_ENABLE = yes
-# VIA_ENABLE = yes
+ENCODER_ENABLE = yes   # Habilita soporte para encoders (perillas rotativas)
+
+LTO_ENABLE = yes       # Optimiza el código para reducir tamaño del firmware
+
+OLED_ENABLE = yes      # Habilita pantalla OLED para mostrar info (capa, modo)
+
+# DYNAMIC_TAPPING_TERM_ENABLE = yes  # Permite ajustar tapping term dinámicamente (comentado para ahorrar espacio)
+
+# VIA_ENABLE = yes      # Habilita VIA configurator (comentado para ahorrar espacio)
