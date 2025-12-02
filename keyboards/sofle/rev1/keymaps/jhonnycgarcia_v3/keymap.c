@@ -291,7 +291,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //,------------------------------------------------.                    ,---------------------------------------------------.
         KC_TRNS,   KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,                    MS_BTN1, MS_BTN2,   KC_NO,   KC_NO,  KC_NO,   KC_DEL,
         //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
-        KC_TRNS,   KC_NO,   KC_NO,  KC_NO,    KC_NO, KC_NO,               LOPT(KC_LEFT),KC_NO,KC_NO,LOPT(KC_RGHT),KC_DEL,  KC_PSCR,
+        KC_TRNS,   KC_NO,   KC_NO,  KC_NO,    KC_NO, KC_INS,               LOPT(KC_LEFT),KC_NO,KC_NO,LOPT(KC_RGHT),KC_DEL,  KC_PSCR,
         //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
         KC_TRNS,   KC_NO,   KC_NO, MS_BTN1, MS_BTN2, KC_LSCR,                      KC_LEFT, KC_DOWN , KC_UP, KC_RGHT, KC_BSPC,   KC_INS,
         //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
@@ -688,7 +688,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     if (keycode == BSPC_NUM) return 150;
 
     if (keycode == LGUI_T(KC_A)) return 180;
-    if (keycode == LSFT_T(KC_F)) return 120;
+    if (keycode == LSFT_T(KC_F)) return 180;
     if (keycode == LALT_T(KC_S) || keycode == LCTL_T(KC_D)) return 200;
 
     // // Gui (A) - tiempo más largo para evitar activaciones accidentales
