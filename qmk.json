@@ -1,7 +1,21 @@
 {
     "userspace_version": "1.1",
     "build_targets": [
-        ["sofle/rev1", "jhonnycgarcia"],
-        ["sofle/rev1", "jhonnycgarcia_v2"]
+        [
+            "sofle/rev1",
+            "jhonnycgarcia"
+        ],
+        [
+            "sofle/rev1",
+            "jhonnycgarcia_v2"
+        ],
+        [
+            "sofle/rev1",
+            "jhonnycgarcia_v3"
+        ],
+        [
+            "sofle/rev1",
+            "jhonnycgarcia_v4"
+        ]
     ]
 }
