@@ -27,18 +27,12 @@
 #define HSV_OVERRIDE(hsv, Override) HSV_OVERRIDE_HELP(hsv, Override)
 
 // Light combinations
-#define SET_LAYER_ID(hsv) \
-    {0, 1, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)}, \
-    {36 + 0, 1, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)}
+#define SET_LAYER_ID(hsv)                                    \
+    {0, 36, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)}, { \
+        36, 36, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS) \
+    }
 
-enum sofle_layers {
-    _QWERTY = 0,
-    _LOWER,
-    _RAISE,
-    _ADJUST,
-    _NUMPAD,
-    _SWITCH
-};
+enum sofle_layers { _QWERTY = 0, _LOWER, _RAISE, _ADJUST, _NUMPAD, _SWITCH };
 
 /**
  * Define un tipo enumerado para identificar las diferentes capas del teclado.
@@ -51,13 +45,12 @@ enum sofle_layers {
  */
 enum custom_keycodes {
     KC_LOWER = SAFE_RANGE, // Definicion de tecla para la capa inferior
-    KC_RAISE, // Definicion de tecla para la capa superior
-    KC_ADJUST, // Definicion de tecla para la capa de ajuste
-    KC_ALT_TAB, // Definicion de tecla para cambiar de ventana
-    KC_ALT_SHIFT_TAB, // Definicion de tecla para cambiar de ventana con shift
-    KC_NTIL, // Definicion de tecla para la letra ñ
+    KC_RAISE,              // Definicion de tecla para la capa superior
+    KC_ADJUST,             // Definicion de tecla para la capa de ajuste
+    KC_ALT_TAB,            // Definicion de tecla para cambiar de ventana
+    KC_ALT_SHIFT_TAB,      // Definicion de tecla para cambiar de ventana con shift
+    KC_NTIL,               // Definicion de tecla para la letra ñ
 };
-
 
 // Definición de la macro para el Mod-Tap de Caps Lock
 // Funciona como Shift cuando se mantiene presionado
@@ -103,7 +96,6 @@ enum custom_keycodes {
 #define KC_COPY LGUI(KC_C)
 #define KC_CUT LGUI(KC_X)
 
-
 /**
  * Definiciones para las capas
  * - KC_SWITCH: Cambia a la capa SWITCH mientras se mantiene presionada
@@ -139,17 +131,13 @@ enum custom_keycodes {
  * Uso: LAYOUT_QWERTY_BASE se puede pasar como parámetro a macros
  * transformadoras como HOME_ROW_MOD_GACS().
  */
-#define LAYOUT_QWERTY_BASE                                                                     \
-/*,------------------------------------------------.                    ,---------------------------------------------------.*/ \
-KC_ESC,     KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,   KC_8,    KC_9,    KC_0,   KC_BSPC, \
-/*|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|*/ \
-KC_TAB,     KC_Q,   KC_W,   KC_E,     KC_R,   KC_T,                       KC_Y,   KC_U,    KC_I,   KC_O,     KC_P,   KC_GRV, \
-/*|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|*/ \
-KC_CAPS_MT, KC_A,   KC_S,    KC_D,   KC_F,    KC_G,                      KC_H,    KC_J,    KC_K,    KC_L,  KC_SCLN, KC_QUOT, \
-/*|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|*/ \
-KC_LCTL,    KC_Z,    KC_X,   KC_C,    KC_V,    KC_B, MS_BTN1,   KC_CTRL_F, KC_N,   KC_M,  KC_COMM,  KC_DOT,  KC_SLSH, KC_MINS, \
-/*|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|*/ \
-               KC_LOPT, KC_LGUI, KC_SWITCH, KC_LOWER, KC_SPC,   KC_ENT, BSPC_NUM, KC_RAISE, KC_RGUI, KC_ROPT
+#define LAYOUT_QWERTY_BASE                                                                                                                                                                                                                         \
+    /*,------------------------------------------------.                    ,---------------------------------------------------.*/                                                                                                                \
+    KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_BSPC,                                  /*|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|*/ \
+        KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_GRV,                               /*|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|*/ \
+        KC_CAPS_MT, KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT,                       /*|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|*/ \
+        KC_LCTL, KC_Z, KC_X, KC_C, KC_V, KC_B, MS_BTN1, KC_CTRL_F, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_MINS, /*|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|*/ \
+        KC_LOPT, KC_LGUI, KC_SWITCH, KC_LOWER, KC_SPC, KC_ENT, BSPC_NUM, KC_RAISE, KC_RGUI, KC_ROPT
 /*            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------*/
 
 /**
@@ -194,7 +182,7 @@ KC_LCTL,    KC_Z,    KC_X,   KC_C,    KC_V,    KC_B, MS_BTN1,   KC_CTRL_F, KC_N,
  *
  * NOTA: Esta configuración está optimizada para macOS y utiliza los modificadores
  * estándar del sistema: Command (⌘), Option (⌥), Control (⌃) y Shift (⇧).
-* https://precondition.github.io/home-row-mods
+ * https://precondition.github.io/home-row-mods
  *
  * NOTA: ⛛ representa cualquier tecla de la fila home que se transformará.
  * La macro detecta automáticamente qué teclas están en la posición home row
@@ -223,35 +211,26 @@ KC_LCTL,    KC_Z,    KC_X,   KC_C,    KC_V,    KC_B, MS_BTN1,   KC_CTRL_F, KC_N,
  * Requisitos: El layout debe tener al menos 60 keycodes (4 filas: 12+12+12+14 teclas + 10 thumbs)
  * Compatible con cualquier distribución de teclado que tenga una fila home
  */
-#define _HOME_ROW_MOD_GACS(                                            \
-/*,------------------------------------------------.                    ,---------------------------------------------------.*/ \
-    L00,    L01,    L02,    L03,     L04,       L05,                        R06,    R07,     R08,   R09,     R10,      R11,        \
-/*|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|*/ \
-    L12,    L13,    L14,    L15,    L16,    L17,                         R18,    R19,    R20,    R21,    R22,    R23,        \
-/*|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|*/ \
-    L24,    L25,    L26,    L27,    L28,    L29,                         R30,      R31,      R32,     R33,    R34,    R35,        \
-/*|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|*/ \
-    L36,    L37,    L38,    L39,    L40,    L41,                         R42,      R43,    R44,    R45,      R46,      R47,   \
-/*|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|*/ \
-                                                                ...)                                                               \
-        /*            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------*/ \
-/*,------------------------------------------------.                    ,---------------------------------------------------.*/ \
-    L00,    L01,   L02,      L03,     L04,    L05,                        R06,    R07,     R08,     R09,    R10,       R11,  \
-/*|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|*/ \
-    L12,    L13,    L14,     L15,    L16,     L17,                        R18,    R19,    R20,     R21,      R22,       R23,  \
-/*|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|*/ \
-                            /* Home row mods GACS aplicados solo a las posiciones home */ \
-   L24, LGUI_T(L25), LALT_T(L26), LCTL_T(L27), LSFT_T(L28),  L29,          R30, RSFT_T(R31), RCTL_T(R32), LALT_T(R33), RGUI_T(R34), R35,  \
-/*|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|*/ \
-    L36,    L37,    L38,     L39,    L40,     L41,                         R42,    R43,    R44,     R45,     R46,      R47,  \
-/*|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|*/ \
-    __VA_ARGS__
-        /*            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------*/ \
-#define HOME_ROW_MOD_GACS(...) _HOME_ROW_MOD_GACS(__VA_ARGS__)
+#define _HOME_ROW_MOD_GACS(                                                            /*,------------------------------------------------.                    ,---------------------------------------------------.*/                                                                                                                \
+                           L00, L01, L02, L03, L04, L05, R06, R07, R08, R09, R10, R11, /*|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|*/                                                                                                               \
+                           L12, L13, L14, L15, L16, L17, R18, R19, R20, R21, R22, R23, /*|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|*/                                                                                                               \
+                           L24, L25, L26, L27, L28, L29, R30, R31, R32, R33, R34, R35, /*|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|*/                                                                                                               \
+                           L36, L37, L38, L39, L40, L41, R42, R43, R44, R45, R46, R47, /*|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|*/                                                                                                               \
+                           ...)                                                                                                                                                                                                                                                                                                       \
+    /*            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------*/                                                                                                                                                                                                                   \
+    /*,------------------------------------------------.                    ,---------------------------------------------------.*/                                                                                                                                                                                                   \
+    L00, L01, L02, L03, L04, L05, R06, R07, R08, R09, R10, R11,                                                                                                                                      /*|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|*/ \
+        L12, L13, L14, L15, L16, L17, R18, R19, R20, R21, R22, R23, /*|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|*/ /* Home row mods GACS aplicados solo a las posiciones home */                                                                    \
+        L24, LGUI_T(L25), LALT_T(L26), LCTL_T(L27), LSFT_T(L28), L29, R30, RSFT_T(R31), RCTL_T(R32), LALT_T(R33), RGUI_T(R34), R35,                                                                  /*|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|*/ \
+        L36, L37, L38, L39, L40, L41, R42, R43, R44, R45, R46, R47,                                                                                                                                  /*|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|*/ \
+        __VA_ARGS__
+/*            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------*/ \
+#define HOME_ROW_MOD_GACS(...)                                                                                  \
+    _HOME_ROW_MOD_GACS(__VA_ARGS__)
 #define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)
 
 const uint16_t PROGMEM switchmod_combo[] = {KC_LGUI, KC_RGUI, COMBO_END};
-combo_t key_combos[] = {
+combo_t                key_combos[]      = {
     COMBO(switchmod_combo, MO(_SWITCH)),
 };
 
@@ -289,17 +268,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_LOWER] = LAYOUT(
         //,------------------------------------------------.                    ,---------------------------------------------------.
-        KC_TRNS,   KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,                    MS_BTN1, MS_BTN2,   KC_NO,   KC_NO,  KC_NO,   KC_DEL,
+        KC_TRNS, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, MS_BTN1, MS_BTN2, KC_NO, KC_NO, KC_NO, KC_DEL,
         //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
-        KC_TRNS,   KC_NO,   KC_NO,  KC_NO,    KC_NO, KC_INS,               LOPT(KC_LEFT),KC_NO,KC_NO,LOPT(KC_RGHT),KC_DEL,  KC_PSCR,
+        KC_TRNS, KC_NO, KC_NO, KC_NO, KC_NO, KC_INS, LOPT(KC_LEFT), KC_NO, KC_NO, LOPT(KC_RGHT), KC_DEL, KC_PSCR,
         //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
-        KC_TRNS,   KC_NO,   KC_NO, MS_BTN1, MS_BTN2, KC_LSCR,                      KC_LEFT, KC_DOWN , KC_UP, KC_RGHT, KC_BSPC,   KC_INS,
+        KC_TRNS, KC_NO, KC_NO, MS_BTN1, MS_BTN2, KC_LSCR, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, KC_BSPC, KC_INS,
         //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
-        KC_TRNS,  KC_UNDO,KC_CUT, KC_COPY, KC_PASTE,KC_REDO, KC_CTRL_T, KC_CTRL_N,KC_HOME,KC_PGDN,  KC_PGUP,  KC_END,   KC_NO,   KC_NO,
+        KC_TRNS, KC_UNDO, KC_CUT, KC_COPY, KC_PASTE, KC_REDO, KC_CTRL_T, KC_CTRL_N, KC_HOME, KC_PGDN, KC_PGUP, KC_END, KC_NO, KC_NO,
         //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
-                        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
         //            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------/
-    ),
+        ),
 
     /* RAISE
      * ,----------------------------------------.                     ,-----------------------------------------.
@@ -317,17 +296,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_RAISE] = LAYOUT(
         //,------------------------------------------------.                    ,---------------------------------------------------.
-        KC_TRNS,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+        KC_TRNS, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
-        KC_TRNS,  S(KC_BSLS),S(KC_QUOT),KC_NO, KC_NO, KC_NO,                   S(KC_6), S(KC_9), S(KC_0), KC_MINS,  A(KC_E),   KC_NO,
+        KC_TRNS, S(KC_BSLS), S(KC_QUOT), KC_NO, KC_NO, KC_NO, S(KC_6), S(KC_9), S(KC_0), KC_MINS, A(KC_E), KC_NO,
         //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
-        KC_TRNS,   KC_NO,  S(KC_2),S(KC_3), S(KC_4),S(KC_5),                   S(KC_7),S(KC_LBRC),S(KC_RBRC),KC_EQL, KC_NTIL,   KC_NO,
+        KC_TRNS, KC_NO, S(KC_2), S(KC_3), S(KC_4), S(KC_5), S(KC_7), S(KC_LBRC), S(KC_RBRC), KC_EQL, KC_NTIL, KC_NO,
         //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
-        KC_TRNS,  KC_NO,  KC_NO,   KC_NO, S(KC_SLSH), KC_NO, KC_CTRL_G, KC_CTRL_S,S(KC_8),KC_LBRC,KC_RBRC,S(KC_1), KC_BSLS,   KC_NO,
+        KC_TRNS, KC_NO, KC_NO, KC_NO, S(KC_SLSH), KC_NO, KC_CTRL_G, KC_CTRL_S, S(KC_8), KC_LBRC, KC_RBRC, S(KC_1), KC_BSLS, KC_NO,
         //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
-                        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
         //            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------/
-    ),
+        ),
 
     /* ADJUST
      * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -345,15 +324,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_ADJUST] = LAYOUT(
         //,------------------------------------------------.                    ,---------------------------------------------------.
-        KC_NO,    KC_NO,    KC_NO, KC_BRIU,  KC_NO,  KC_NO,                       KC_NO,  KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,
+        KC_NO, KC_NO, KC_NO, KC_BRIU, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
-        QK_BOOT,  KC_NO,   KC_NO,   KC_BRID, KC_NO,  KC_NO,                       KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+        QK_BOOT, KC_NO, KC_NO, KC_BRID, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
-        UG_TOGG, UG_HUEU, UG_SATU, UG_VALU,  UG_SPDU,  KC_NO,                      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+        UG_TOGG, UG_HUEU, UG_SATU, UG_VALU, UG_SPDU, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
-        UG_NEXT, UG_HUED, UG_SATD, UG_VALD,  UG_SPDD,  KC_NO, KC_NO,       KC_NO,   KC_NO, KC_NO,   KC_NO,   KC_NO,    KC_NO, KC_NO,
+        UG_NEXT, UG_HUED, UG_SATD, UG_VALD, UG_SPDD, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
-                        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
         //            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------/
         ),
     /* NUMPAD
@@ -372,17 +351,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_NUMPAD] = LAYOUT(
         //,------------------------------------------------.                    ,---------------------------------------------------.
-        KC_F1,     KC_F2,  KC_F3,    KC_F4,   KC_F5,  KC_F6,                     KC_MPRV,KC_MPLY,KC_MNXT, KC_MUTE, KC_VOLD, KC_VOLU,
+        KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_VOLD, KC_VOLU,
         //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
-        KC_F7,     KC_F8,  KC_F9,   KC_F10,  KC_F11, KC_F12,                     KC_PDOT,  KC_P7, KC_P8,  KC_P9,   KC_PPLS,  KC_NO,
+        KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, KC_PDOT, KC_P7, KC_P8, KC_P9, KC_PPLS, KC_NO,
         //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
-        KC_NO,     KC_NO,  KC_NO,    KC_NO,   KC_NO,  KC_NO,                     KC_PCMM,  KC_P4, KC_P5,  KC_P6,   KC_NO,   KC_PAST,
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_PCMM, KC_P4, KC_P5, KC_P6, KC_NO, KC_PAST,
         //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
-        KC_NO,     KC_NO,  KC_NO,    KC_NO,   KC_NO,  KC_NO,  KC_NO,     KC_NO,  KC_P0,    KC_P1, KC_P2,  KC_P3,   KC_NO,   KC_PSLS,
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_P0, KC_P1, KC_P2, KC_P3, KC_NO, KC_PSLS,
         //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
-                        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
         //            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------/
-    ),
+        ),
 
     /* SWITCH
      * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -401,19 +380,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Capa para cambiar entre distribuciones y controles de navegación
     [_SWITCH] = LAYOUT(
         //,------------------------------------------------.                    ,---------------------------------------------------.
-        KC_NO,     KC_NO,   KC_NO,  KC_NO,   KC_NO,  KC_NO,                      KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
-        KC_NO,    TO(0),   KC_NO,   TO(1),   TO(2),  KC_NO,                      KC_NO,  KC_NO, KC_LCTRL_UP ,   KC_NO,   KC_NO,   KC_NO,
+        KC_NO, TO(0), KC_NO, TO(1), TO(2), KC_NO, KC_NO, KC_NO, KC_LCTRL_UP, KC_NO, KC_NO, KC_NO,
         //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
-        KC_NO,    TO(4),   TO(5),   KC_NO,   KC_NO,  KC_NO,                      KC_NO,  KC_LCTRL_LEFT,   KC_LCTRL_DOWN,   KC_LCTRL_RGHT,   KC_NO,   KC_NO,
+        KC_NO, TO(4), TO(5), KC_NO, KC_NO, KC_NO, KC_NO, KC_LCTRL_LEFT, KC_LCTRL_DOWN, KC_LCTRL_RGHT, KC_NO, KC_NO,
         //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
-        KC_NO,    KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_NO, KC_CTRL_0,  KC_MUTE, KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_CTRL_0, KC_MUTE, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
-                        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,      KC_NO,   KC_NO,    KC_NO,    KC_NO,    KC_NO
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
         //            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------/
-    ),
+        ),
 };
-
 
 /**
  * Definición de capas y configuración de iluminación RGB
@@ -440,9 +418,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 // QWERTY,
 // Light on inner column and underglow
-const rgblight_segment_t PROGMEM layer_qwerty_lights[]  = RGBLIGHT_LAYER_SEGMENTS(SET_LAYER_ID(HSV_WHITE));
-
-
+const rgblight_segment_t PROGMEM layer_qwerty_lights[] = RGBLIGHT_LAYER_SEGMENTS(SET_LAYER_ID(HSV_WHITE));
 
 // _LOWER,
 // Light on outer column and underglow
@@ -453,8 +429,8 @@ const rgblight_segment_t PROGMEM layer_num_lights[] = RGBLIGHT_LAYER_SEGMENTS(SE
 const rgblight_segment_t PROGMEM layer_symbol_lights[] = RGBLIGHT_LAYER_SEGMENTS(SET_LAYER_ID(HSV_BLUE));
 
 // _ADJUST,
-// Light on inner column and underglow
-const rgblight_segment_t PROGMEM layer_command_lights[] = RGBLIGHT_LAYER_SEGMENTS(SET_LAYER_ID(HSV_PINK));
+// Solo 1 LED por lado como indicador (permite ver el color que estás configurando)
+const rgblight_segment_t PROGMEM layer_command_lights[] = RGBLIGHT_LAYER_SEGMENTS({0, 1, HSV_OVERRIDE(HSV_PINK, INDICATOR_BRIGHTNESS)}, {36, 1, HSV_OVERRIDE(HSV_PINK, INDICATOR_BRIGHTNESS)});
 
 //_NUMPAD
 const rgblight_segment_t PROGMEM layer_numpad_lights[] = RGBLIGHT_LAYER_SEGMENTS(SET_LAYER_ID(HSV_PURPLE));
@@ -462,20 +438,23 @@ const rgblight_segment_t PROGMEM layer_numpad_lights[] = RGBLIGHT_LAYER_SEGMENTS
 // _SWITCHER   // light up top row
 const rgblight_segment_t PROGMEM layer_switcher_lights[] = RGBLIGHT_LAYER_SEGMENTS(SET_LAYER_ID(HSV_YELLOW));
 
-const rgblight_segment_t *const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
-    layer_qwerty_lights,
-    layer_num_lights, // overrides layer 1
-    layer_symbol_lights,
-    layer_command_lights,
-    layer_numpad_lights,
-    layer_switcher_lights // Overrides other layers
+const rgblight_segment_t *const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(layer_qwerty_lights,
+                                                                               layer_num_lights, // overrides layer 1
+                                                                               layer_symbol_lights, layer_command_lights, layer_numpad_lights,
+                                                                               layer_switcher_lights // Overrides other layers
 );
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    rgblight_set_layer_state(0, layer_state_cmp(state, _QWERTY) && layer_state_cmp(default_layer_state, _QWERTY));
-    rgblight_set_layer_state(1, layer_state_cmp(state, _LOWER));
-    rgblight_set_layer_state(2, layer_state_cmp(state, _RAISE));
-    rgblight_set_layer_state(3, layer_state_cmp(state, _ADJUST));
+    // QWERTY desactivado - permite control manual del color base
+    // rgblight_set_layer_state(0, layer_state_cmp(state, _QWERTY) && layer_state_cmp(default_layer_state, _QWERTY));
+
+    bool is_adjust = layer_state_cmp(state, _ADJUST);
+
+    // Desactivar LOWER y RAISE cuando ADJUST está activo (tri-layer)
+    // Así el indicador de ADJUST se ve correctamente
+    rgblight_set_layer_state(1, layer_state_cmp(state, _LOWER) && !is_adjust);
+    rgblight_set_layer_state(2, layer_state_cmp(state, _RAISE) && !is_adjust);
+    rgblight_set_layer_state(3, is_adjust);
     rgblight_set_layer_state(4, layer_state_cmp(state, _NUMPAD));
     rgblight_set_layer_state(5, layer_state_cmp(state, _SWITCH));
 
@@ -489,8 +468,6 @@ void keyboard_post_init_user(void) {
     rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT); // haven't found a way to set this in a more useful way
 }
 #endif
-
-
 
 /**
  * Configuración y funciones para la pantalla OLED
@@ -531,8 +508,6 @@ static void print_status_narrow(void) {
         case _QWERTY:
             oled_write_ln_P(PSTR("Qwrt"), false);
             break;
-
-
 
         default:
             oled_write_ln_P(PSTR("Undef"), false);
@@ -816,7 +791,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
                 }
                 return false;
         }
-    // Encoder derecho
+        // Encoder derecho
     } else if (index == 1) {
         switch (get_highest_layer(layer_state)) {
             case _QWERTY:
