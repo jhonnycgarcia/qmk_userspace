@@ -504,11 +504,15 @@ led_config_t g_led_config = {{
                                  // Para RGUI: K→RGUI, entonces RGUI usa LED de K (era 52)
                                  // Para RALT: N→RALT, entonces RALT usa LED de N (era 64)
 
-                                 {68, 66, 58, 57, 48, 60},     // Fila 5: 6,7,8,9,0,BSPC
-                                 {69, 67, 59, 53, 49, 46},     // Fila 6: Y,U,I,O,P,GRV
-                                 {70, 65, 47, 54, 55, 44},     // Fila 7: H,J,K,L,;,'
-                                 {71, 50, 43, 45, 51, 63},     // Fila 8: N,M,,,.,/,-
-                                 {61, 52, 62, 56, 64, NO_LED}, // Fila 9: ENT,RGUI,NUM,RAISE,RALT,-
+                                 // LADO DERECHO - TEST 14 (teoría del usuario: patrón secuencial)
+                                 // Hipótesis: LEDs siguen patrón geométrico zig-zag por columnas
+                                 // Los 19 correctos del TEST13 NO se modifican
+                                 // Solo cambian: 6, BSPC, J, K, L, ;, M, ,, ., /
+                                 {47, 48, 57, 58, 67, 68},     // Fila 5: 6=47,7=48,8=57,9=58,0=67,BSPC=68
+                                 {46, 49, 56, 59, 66, 69},     // Fila 6: Y=46,U=49,I=56,O=59,P=66,GRV=69
+                                 {45, 50, 55, 60, 65, 70},     // Fila 7: H=45,J=50,K=55,L=60,;=65,'=70
+                                 {44, 51, 54, 61, 64, 71},     // Fila 8: N=44,M=51,,=54,.=61,/=64,-=71
+                                 {43, 52, 53, 62, 63, NO_LED}, // Fila 9: ENT=43,RGUI=52,NUM=53,RAISE=62,RALT=63
                              },
                              {
                                  // LED Index to Physical Position
@@ -532,58 +536,58 @@ led_config_t g_led_config = {{
 
                                  // LEDs 7-35: Posiciones basadas en testing
                                  // TEST: B→LOPT, entonces LED 7 tiene pos LOPT = (20,56)
-                                 {20, 56}, // 7: pos LOPT (B enciende LOPT)
-                                           // TEST: G→LCTRL, entonces LED 8 tiene pos LCTRL = (0,48)
-                                 {0, 48}, // 8: pos LCTRL (G enciende LCTRL)
-                                          // TEST: T→LSHIFT/CAPS, entonces LED 9 tiene pos CAPS = (0,32)
-                                 {0, 32}, // 9: pos CAPS (T enciende CAPS)
-                                          // TEST: 5→TAB, entonces LED 10 tiene pos TAB = (0,16)
-                                 {0, 16}, // 10: pos TAB (5 enciende TAB)
-                                          // TEST: 4→ESC, entonces LED 11 tiene pos ESC = (0,0)
-                                 {0, 0}, // 11: pos ESC (4 enciende ESC)
-                                         // TEST: R→1, entonces LED 12 tiene pos 1 = (20,0)
-                                 {20, 0}, // 12: pos 1 (R enciende 1)
-                                          // TEST: F→Q, entonces LED 13 tiene pos Q = (20,16)
-                                 {20, 16}, // 13: pos Q (F enciende Q)
-                                           // TEST: V→A, entonces LED 14 tiene pos A = (20,32)
-                                 {20, 32}, // 14: pos A (V enciende A)
-                                           // TEST: C→Z, entonces LED 15 tiene pos Z = (20,48)
-                                 {20, 48}, // 15: pos Z (C enciende Z)
-                                           // TEST: D→LGUI, entonces LED 16 tiene pos LGUI = (40,56)
-                                 {40, 56}, // 16: pos LGUI (D enciende LGUI)
-                                           // TEST: E→SWITCH, entonces LED 17 tiene pos SWITCH = (60,56)
-                                 {60, 56}, // 17: pos SWITCH (E enciende SWITCH)
-                                           // TEST: 3→X, entonces LED 18 tiene pos X = (40,48)
-                                 {40, 48}, // 18: pos X (3 enciende X)
-                                           // TEST: 2→S, entonces LED 19 tiene pos S = (40,32)
-                                 {40, 32}, // 19: pos S (2 enciende S)
-                                           // TEST: W→W, entonces LED 20 tiene pos W = (40,16) ✓
-                                 {40, 16}, // 20: pos W (W enciende W) ✓ CONFIRMADO
-                                           // TEST: S→2, entonces LED 21 tiene pos 2 = (40,0)
-                                 {40, 0}, // 21: pos 2 (S enciende 2)
-                                          // TEST: A→3, entonces LED 22 tiene pos 3 = (60,0)
-                                 {60, 0}, // 22: pos 3 (A enciende 3)
-                                          // TEST: Q→E, entonces LED 23 tiene pos E = (60,16)
-                                 {60, 16}, // 23: pos E (Q enciende E)
-                                           // TEST: 1→D, entonces LED 24 tiene pos D = (60,32)
-                                 {60, 32}, // 24: pos D (1 enciende D)
-                                           // TEST: ESC→C, entonces LED 25 tiene pos C = (60,48)
-                                 {60, 48}, // 25: pos C (ESC enciende C)
-                                           // TEST: TAB→LOWER, entonces LED 26 tiene pos LOWER = (80,56)
-                                 {80, 56}, // 26: pos LOWER (TAB enciende LOWER)
-                                           // TEST: CAPS→SPACE/ENT, entonces LED 27 tiene pos SPACE = (100,56)
+                                 {20, 56},  // 7: pos LOPT (B enciende LOPT)
+                                            // TEST: G→LCTRL, entonces LED 8 tiene pos LCTRL = (0,48)
+                                 {0, 48},   // 8: pos LCTRL (G enciende LCTRL)
+                                            // TEST: T→LSHIFT/CAPS, entonces LED 9 tiene pos CAPS = (0,32)
+                                 {0, 32},   // 9: pos CAPS (T enciende CAPS)
+                                            // TEST: 5→TAB, entonces LED 10 tiene pos TAB = (0,16)
+                                 {0, 16},   // 10: pos TAB (5 enciende TAB)
+                                            // TEST: 4→ESC, entonces LED 11 tiene pos ESC = (0,0)
+                                 {0, 0},    // 11: pos ESC (4 enciende ESC)
+                                            // TEST: R→1, entonces LED 12 tiene pos 1 = (20,0)
+                                 {20, 0},   // 12: pos 1 (R enciende 1)
+                                            // TEST: F→Q, entonces LED 13 tiene pos Q = (20,16)
+                                 {20, 16},  // 13: pos Q (F enciende Q)
+                                            // TEST: V→A, entonces LED 14 tiene pos A = (20,32)
+                                 {20, 32},  // 14: pos A (V enciende A)
+                                            // TEST: C→Z, entonces LED 15 tiene pos Z = (20,48)
+                                 {20, 48},  // 15: pos Z (C enciende Z)
+                                            // TEST: D→LGUI, entonces LED 16 tiene pos LGUI = (40,56)
+                                 {40, 56},  // 16: pos LGUI (D enciende LGUI)
+                                            // TEST: E→SWITCH, entonces LED 17 tiene pos SWITCH = (60,56)
+                                 {60, 56},  // 17: pos SWITCH (E enciende SWITCH)
+                                            // TEST: 3→X, entonces LED 18 tiene pos X = (40,48)
+                                 {40, 48},  // 18: pos X (3 enciende X)
+                                            // TEST: 2→S, entonces LED 19 tiene pos S = (40,32)
+                                 {40, 32},  // 19: pos S (2 enciende S)
+                                            // TEST: W→W, entonces LED 20 tiene pos W = (40,16) ✓
+                                 {40, 16},  // 20: pos W (W enciende W) ✓ CONFIRMADO
+                                            // TEST: S→2, entonces LED 21 tiene pos 2 = (40,0)
+                                 {40, 0},   // 21: pos 2 (S enciende 2)
+                                            // TEST: A→3, entonces LED 22 tiene pos 3 = (60,0)
+                                 {60, 0},   // 22: pos 3 (A enciende 3)
+                                            // TEST: Q→E, entonces LED 23 tiene pos E = (60,16)
+                                 {60, 16},  // 23: pos E (Q enciende E)
+                                            // TEST: 1→D, entonces LED 24 tiene pos D = (60,32)
+                                 {60, 32},  // 24: pos D (1 enciende D)
+                                            // TEST: ESC→C, entonces LED 25 tiene pos C = (60,48)
+                                 {60, 48},  // 25: pos C (ESC enciende C)
+                                            // TEST: TAB→LOWER, entonces LED 26 tiene pos LOWER = (80,56)
+                                 {80, 56},  // 26: pos LOWER (TAB enciende LOWER)
+                                            // TEST: CAPS→SPACE/ENT, entonces LED 27 tiene pos SPACE = (100,56)
                                  {100, 56}, // 27: pos SPACE (CAPS enciende SPACE)
                                             // TEST: LCTRL→V, entonces LED 28 tiene pos V = (80,48)
-                                 {80, 48}, // 28: pos V (LCTRL enciende V)
-                                           // TEST: Z→T (test2: Z→F), entonces LED 29 tiene pos...
-                                 {80, 32}, // 29: pos F (Z enciende F en test2)
-                                           // TEST: X→5 (test2: X→R), entonces LED 30 tiene pos...
-                                 {80, 16}, // 30: pos R (X enciende R en test2)
-                                           // TEST: LOWER→4, entonces LED 31 tiene pos 4 = (80,0)
-                                 {80, 0}, // 31: pos 4 (LOWER enciende 4)
-                                          // TEST: LGUI→ninguna, LED 32...
-                                 {100, 0}, // 32: pos 5
-                                           // TEST: LOPT→ninguna, LED 33...
+                                 {80, 48},  // 28: pos V (LCTRL enciende V)
+                                            // TEST: Z→T (test2: Z→F), entonces LED 29 tiene pos...
+                                 {80, 32},  // 29: pos F (Z enciende F en test2)
+                                            // TEST: X→5 (test2: X→R), entonces LED 30 tiene pos...
+                                 {80, 16},  // 30: pos R (X enciende R en test2)
+                                            // TEST: LOWER→4, entonces LED 31 tiene pos 4 = (80,0)
+                                 {80, 0},   // 31: pos 4 (LOWER enciende 4)
+                                            // TEST: LGUI→ninguna, LED 32...
+                                 {100, 0},  // 32: pos 5
+                                            // TEST: LOPT→ninguna, LED 33...
                                  {100, 16}, // 33: pos T
                                             // TEST: SPACE→R (test2: SPACE→G), entonces LED 34 tiene pos G = (100,32)
                                  {100, 32}, // 34: pos G (SPACE enciende G en test2)
