@@ -73,29 +73,21 @@
 
 /* ============================================
  * EFECTOS RGB_MATRIX
- * Habilitamos solo algunos para ahorrar espacio
+ * Modo testing: HEATMAP
  * ============================================ */
 
-// Efectos básicos (bajo consumo de memoria)
+// Efecto base
 #    define ENABLE_RGB_MATRIX_SOLID_COLOR // Color sólido
-#    define ENABLE_RGB_MATRIX_BREATHING   // Respiración
 
-// Efectos de arcoíris (medio consumo)
-#    define ENABLE_RGB_MATRIX_CYCLE_ALL        // Ciclo de colores
-#    define ENABLE_RGB_MATRIX_CYCLE_LEFT_RIGHT // Ciclo izquierda-derecha
+// ==========================================
+// TU FAVORITO
+// ==========================================
+#    define ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE // Destello simple ⭐
 
-// Efectos reactivos (requieren RGB_MATRIX_KEYPRESSES)
-#    define ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE // Destello simple al presionar
-
-// Deshabilitamos el resto para ahorrar espacio
-// Si querés más efectos, habilitá estos y deshabilitá otros:
-// #define ENABLE_RGB_MATRIX_GRADIENT_UP_DOWN
-// #define ENABLE_RGB_MATRIX_GRADIENT_LEFT_RIGHT
-// #define ENABLE_RGB_MATRIX_RAINBOW_MOVING_CHEVRON
-// #define ENABLE_RGB_MATRIX_TYPING_HEATMAP      // Mapa de calor (consume mucho)
-// #define ENABLE_RGB_MATRIX_DIGITAL_RAIN        // Lluvia Matrix (consume mucho)
-// #define ENABLE_RGB_MATRIX_SOLID_REACTIVE_WIDE
-// #define ENABLE_RGB_MATRIX_SPLASH
-// #define ENABLE_RGB_MATRIX_SOLID_SPLASH
+// ==========================================
+// HEATMAP - Mapa de calor 🔥
+// Las teclas más usadas se ponen rojas
+// ==========================================
+#    define ENABLE_RGB_MATRIX_TYPING_HEATMAP
 
 #endif // RGB_MATRIX_ENABLE
