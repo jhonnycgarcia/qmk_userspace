@@ -53,6 +53,7 @@
 
 // Sincronizar RGB entre mitades
 #    define SPLIT_TRANSPORT_MIRROR
+#    define SPLIT_LAYER_STATE_ENABLE // Sincroniza estado de capa al lado derecho
 
 // Comportamiento general
 #    define RGB_MATRIX_KEYPRESSES             // Reacciona a pulsaciones de teclas
@@ -86,8 +87,8 @@
 
 // ==========================================
 // HEATMAP - Mapa de calor 🔥
-// Las teclas más usadas se ponen rojas
+// DESHABILITADO: No hay espacio con indicador de capas (~102 bytes over)
 // ==========================================
-#    define ENABLE_RGB_MATRIX_TYPING_HEATMAP
+// #    define ENABLE_RGB_MATRIX_TYPING_HEATMAP
 
 #endif // RGB_MATRIX_ENABLE

@@ -814,6 +814,52 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 // =============================================================================
+// INDICADOR LED POR CAPA - El LED central cambia de color según la capa activa
+// =============================================================================
+// LED 0 = indicador izquierdo (debajo del OLED)
+// LED 36 = indicador derecho (debajo del OLED)
+// En capa base (QWERTY) no seteamos color - dejamos el efecto normal
+// =============================================================================
+bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+    uint8_t layer = get_highest_layer(layer_state);
+
+    // En capa QWERTY, apagar indicadores (dejar que el efecto RGB normal los controle)
+    if (layer == _QWERTY) {
+        rgb_matrix_set_color(0, 0, 0, 0);  // Apagar indicador izquierdo
+        rgb_matrix_set_color(36, 0, 0, 0); // Apagar indicador derecho
+        return false;
+    }
+
+    HSV hsv = {0, 255, rgb_matrix_get_val()};
+
+    switch (layer) {
+        case _LOWER:
+            hsv.h = 85;
+            break; // Verde
+        case _RAISE:
+            hsv.h = 170;
+            break; // Azul
+        case _ADJUST:
+            hsv.h = 0;
+            break; // Rojo
+        case _NUMPAD:
+            hsv.h = 191;
+            break; // Púrpura
+        case _SWITCH:
+            hsv.h = 43;
+            break; // Amarillo
+        default:
+            return false;
+    }
+
+    RGB rgb = hsv_to_rgb(hsv);
+    rgb_matrix_set_color(0, rgb.r, rgb.g, rgb.b);
+    rgb_matrix_set_color(36, rgb.r, rgb.g, rgb.b);
+
+    return false;
+}
+
+// =============================================================================
 // CONFIGURACIÓN DE TAPPING TERMS - Tiempos de respuesta personalizados
 // =============================================================================
 //
