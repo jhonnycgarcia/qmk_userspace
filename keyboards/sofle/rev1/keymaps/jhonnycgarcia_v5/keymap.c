@@ -95,6 +95,10 @@ enum custom_keycodes {
 #define KC_ADJUST MO(_ADJUST)
 #define KC_NUMPAD MO(_NUMPAD)
 
+#define _______________DEAD_HALF_ROW_______________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+#define ______________HOME_ROW_GACS_L______________ XXXXXXX, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX
+#define ______________HOME_ROW_GACS_R______________ XXXXXXX, KC_RSFT, KC_RCTL, KC_RALT, KC_RGUI, XXXXXXX
+
 /**
  * \brief QWERTY layout base para Sofle (6 rows, 12 columns).
  *
@@ -358,7 +362,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------/
         ),
 
-    [_NUMPAD] = LAYOUT_wrapper(HOME_ROW_MOD_GACS(LAYOUT_NUMPAD)),
+    [_NUMPAD] = LAYOUT_wrapper(LAYOUT_NUMPAD),
 
     /* SWITCH
      * ,-----------------------------------------.                    ,-----------------------------------------.
